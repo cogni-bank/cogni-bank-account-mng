@@ -18,7 +18,7 @@ public class Account {
     private AccountType accountType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
     private long balance;
