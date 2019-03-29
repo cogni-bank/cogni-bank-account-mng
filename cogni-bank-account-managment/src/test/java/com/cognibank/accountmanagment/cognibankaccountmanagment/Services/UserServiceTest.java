@@ -9,11 +9,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import sun.font.TrueTypeFont;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -56,7 +54,7 @@ public class UserServiceTest {
                 .withBalance(10000).withtUser(newUser);
         userAccounts.add(account);
         newUser.withAccount(userAccounts);
-        Assert.assertEquals( account.getBalance() ,10000);
+        Assert.assertEquals( "Update user and check their balance", account.getBalance() ,10000);
 
     }
 
