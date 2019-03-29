@@ -27,9 +27,7 @@ public class UserServiceTest {
         User newUser = new User();
         newUser.withUserId("234234");
         userService.createUser(newUser);
-
         Assert.assertNotNull("User object should have a user id", newUser.getUserId());
-
     }
 
     @Test
@@ -52,11 +50,7 @@ public class UserServiceTest {
         List<Account> userAccounts = new ArrayList<>();
         User newUser = new User();
         newUser.withUserId("0998");
-
         userService.createUser(newUser);
-
-       // newUser.withUserId("0998");
-
         Account account = new Account().withAccountNumber(12l)
                 .withAccountType(AccountType.Savings)
                 .withBalance(10000).withtUser(newUser);
