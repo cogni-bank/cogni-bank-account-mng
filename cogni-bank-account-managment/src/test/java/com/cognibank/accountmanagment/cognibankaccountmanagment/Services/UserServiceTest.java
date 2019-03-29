@@ -1,5 +1,7 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import sun.font.TrueTypeFont;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,10 +45,26 @@ public class UserServiceTest {
 
        List<User> users = userService.getAllUsers();
        Assert.assertEquals("testing the size of the list of users",1,users.size());
-
-
     }
 
+    @Test
+    public void updateUser(){
+        List<Account> userAccounts = new ArrayList<>();
+        User newUser = new User();
+        newUser.withUserId("0998");
+
+        userService.createUser(newUser);
+
+       // newUser.withUserId("0998");
+
+        Account account = new Account().withAccountNumber(12l)
+                .withAccountType(AccountType.Savings)
+                .withBalance(10000).withtUser(newUser);
+        userAccounts.add(account);
+        newUser.withAccount(userAccounts);
+        Assert.assertEquals( account.getBalance() ,10000);
+
+    }
 
 
 }
