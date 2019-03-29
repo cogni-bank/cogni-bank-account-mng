@@ -1,9 +1,8 @@
-package com.cognibank.accountmanagment.cognibankaccountmanagment.UserRepositoryTest;
+package com.cognibank.accountmanagment.cognibankaccountmanagment.Repository;
 
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
