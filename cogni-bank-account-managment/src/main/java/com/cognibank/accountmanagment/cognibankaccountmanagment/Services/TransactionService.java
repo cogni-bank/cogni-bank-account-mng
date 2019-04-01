@@ -21,7 +21,12 @@ public class TransactionService {
        return transactionRepository.findTransactionsByCustomerId(id);
    }
 
-   public void createTransaction(Transaction transaction){
+public List<Transaction> getTrasactionByAccountNumber(long accountNumber){
+
+       return transactionRepository.findTransactionsByAccountNumber(accountNumber);
+}
+
+    public void createTransaction(Transaction transaction){
        transactionRepository.save(transaction);
    }
 

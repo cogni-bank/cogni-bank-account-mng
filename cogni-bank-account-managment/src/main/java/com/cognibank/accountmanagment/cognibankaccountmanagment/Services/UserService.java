@@ -12,15 +12,24 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
 
     public void createUser(User newUser) {
         userRepository.save(newUser);
     }
 
-    public void findUserById(String id) {
-        userRepository.findById(id).orElse(null);
+
+    public boolean findUserById(String id) {
+
+        return userRepository.findById(id) != null ? true : false;
+
+    }
+
+    public Optional<User> findUser(String id) {
+
+        return userRepository.findById(id) ;
+
     }
     public List<User> getAllUsers(){
 

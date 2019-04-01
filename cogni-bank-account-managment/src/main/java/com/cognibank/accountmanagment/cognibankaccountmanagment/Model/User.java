@@ -7,7 +7,6 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(nullable = false)
     private String Id;
 
     @OneToMany(

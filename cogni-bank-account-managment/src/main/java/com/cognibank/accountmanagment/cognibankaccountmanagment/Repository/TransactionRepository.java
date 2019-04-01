@@ -16,8 +16,11 @@ public interface TransactionRepository extends JpaRepository<Transaction, String
     @Query(value = "select * from transaction where customer_id = :customer_id",nativeQuery = true)
     List<Transaction> findTransactionsByCustomerId(@Param("customer_id") String id);
 
-    @Query(value = "select * from transaction where customer_id = :customer_id AND type = :acountType",nativeQuery = true)
-    List<Transaction> findTransactionsByCustomerIdAndAccountType(@Param("customer_id") String id,
-                                                                 @Param("accountType")AccountType type);
+
+    @Query(value = "select * from transaction" +
+            " inner join" +
+            " Account ON" +
+            " account.account_number = :account_number",nativeQuery = true)
+    List<Transaction> findTransactionsByAccountNumber(@Param("account_number") long accountNumber);
 
 }
