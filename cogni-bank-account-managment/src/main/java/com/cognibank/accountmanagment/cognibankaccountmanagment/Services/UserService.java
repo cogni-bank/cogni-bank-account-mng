@@ -19,11 +19,19 @@ public class UserService {
         userRepository.save(newUser);
     }
 
-    public Optional<User> findUserById(String id) {
-        return userRepository.findById(id);
+    public void findUserById(String id) {
+        userRepository.findById(id).orElse(null);
     }
     public List<User> getAllUsers(){
 
         return userRepository.findAll();
+    }
+
+    public void update(User user){
+        userRepository.save(user);
+    }
+
+    public void deleteUser(String id){
+        userRepository.deleteById(id);
     }
 }

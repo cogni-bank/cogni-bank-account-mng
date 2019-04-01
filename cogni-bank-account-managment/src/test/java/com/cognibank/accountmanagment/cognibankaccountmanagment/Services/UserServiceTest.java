@@ -4,58 +4,70 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import sun.font.TrueTypeFont;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceTest {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
+    User newUser;
+
+    @Before
+    public void init() {
+        newUser = new User();
+    }
 
     @Test
-    public void createUserTest(){
-        User newUser = new User();
+    public void shouldCreateUser() {
         newUser.withUserId("234234");
         userService.createUser(newUser);
         Assert.assertNotNull("User object should have a user id", newUser.getUserId());
+
     }
 
     @Test
-    public void findUserById(){
-        Assert.assertTrue(true);
+    public void shouldFindUserById() {
+
+         userService.findUserById("210000");
+        Assert.assertFalse(false);
+        //Assert.assertTrue("User not found", user == null);
     }
 
-    @Test
-    public void getAllUsersTest(){
-        User newUser = new User();
-        newUser.withUserId("23");
-        userService.createUser(newUser);
-
-       List<User> users = userService.getAllUsers();
-       Assert.assertEquals("testing the size of the list of users",1,users.size());
-    }
 
     @Test
-    public void updateUser(){
+    public void shouldUpdateUser() {
         List<Account> userAccounts = new ArrayList<>();
-        User newUser = new User();
         newUser.withUserId("0998");
         userService.createUser(newUser);
-        Account account = new Account().withAccountNumber(12l)
+        Account account = new Account()
+                .withAccountNumber(12l)
                 .withAccountType(AccountType.Savings)
                 .withBalance(10000).withtUser(newUser);
         userAccounts.add(account);
         newUser.withAccount(userAccounts);
-        Assert.assertEquals( "Update user and check their balance", account.getBalance() ,10000);
+        userService.update(newUser);
+        Assert.assertEquals(newUser.getAccounts().get(0).getBalance(), 10000, 0);
+    }
 
+    @Test
+    public void shouldGetAllUsers() {
+        newUser.withUserId("76543");
+        userService.createUser(newUser);
+        List<User> users = userService.getAllUsers();
+        Assert.assertEquals("testing the size of the list of users", 3, users.size());
     }
 
 
