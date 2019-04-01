@@ -56,7 +56,7 @@ public class UserServiceTest {
                 .withBalance(10000).withtUser(newUser);
         userAccounts.add(account);
         newUser.withAccount(userAccounts);
-        Assert.assertEquals( account.getBalance() ,10000);
+        Assert.assertEquals( account.getBalance() ,10000,0);
 
     }
 

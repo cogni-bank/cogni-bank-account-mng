@@ -17,14 +17,13 @@ import java.util.List;
 @SpringBootTest
 public class UserRepositoryTest {
 
-
     @Autowired
     UserRepository userRepository;
 
     @Test
     public void userCreateTest() {
         User user = new User();
-        user.withUserId("234234");
+        user.withUserId("234234"); // id we get from user management
         List<Account> userAccounts = new ArrayList<>();
 
 

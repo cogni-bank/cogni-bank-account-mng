@@ -1,27 +1,27 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Model;
+
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+
 @Entity
 public class Account {
 
-     @Id
-     @GeneratedValue(generator= "uuid2")
-     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-     @Column (name ="ID", columnDefinition ="VARCHAR(255)")
-     private String id;
-     @Column(nullable = false)
-
-    private  long accountNumber;
+    @Id
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", columnDefinition = "VARCHAR(255)")
+    private String id;
+    @Column(nullable = false)
+    private long accountNumber;
     @Column(nullable = false)
     private AccountType accountType;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    private long balance;
+    private double balance;
 
     public User getUser() {
         return user;
@@ -61,7 +61,7 @@ public class Account {
 
     }
 
-    public long getBalance() {
+    public double getBalance() {
         return balance;
     }
 
@@ -70,10 +70,10 @@ public class Account {
         return this;
     }
 
-    public Long createAccount(){
-            long accountNumber = (long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
-            return accountNumber;
-        }
+    public Long createAccount() {
+        long accountNumber = (long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
+        return accountNumber;
+    }
 
 
 }
