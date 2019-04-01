@@ -7,6 +7,7 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.AccountService;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -23,13 +24,14 @@ public class UserController {
 
 
     @PutMapping("/{id}")
-    public void createUser(@RequestBody @PathVariable("id") String id, User user) throws AccountNotFoundException {
+    public User createUser(@RequestBody @PathVariable("id") String id, User user) throws AccountNotFoundException {
         user.withUserId(id);
-        userService.createUser(user);
+        return userService.createUser(user);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable("id") String id) {
+    public void deleteUser(@PathVariable("id") String id) throws Exception {
+
         userService.deleteUser(id);
     }
 

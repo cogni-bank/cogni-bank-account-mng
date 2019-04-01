@@ -1,5 +1,6 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.UserAccountNotFoundException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class UserService {
     private UserRepository userRepository;
 
 
-    public void createUser(User newUser) {
-        userRepository.save(newUser);
+    public User createUser(User newUser) {
+        return userRepository.save(newUser);
     }
 
 
@@ -40,7 +41,13 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void deleteUser(String id){
-        userRepository.deleteById(id);
+    public void deleteUser(String id) throws UserAccountNotFoundException {
+
+        try {
+            userRepository.deleteById(id);
+        } catch (Exception e){
+            throw new UserAccountNotFoundException("User account not found");
+        }
+
     }
 }
