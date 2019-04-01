@@ -20,10 +20,18 @@ public class UserService {
     }
 
     public Optional<User> findUserById(String id) {
-        return userRepository.findById(id);
+        return Optional.ofNullable(userRepository.findById(id).orElse(null));
     }
     public List<User> getAllUsers(){
 
         return userRepository.findAll();
+    }
+
+    public void update(User user){
+        userRepository.save(user);
+    }
+
+    public void deleteUser(String id){
+        userRepository.deleteById(id);
     }
 }

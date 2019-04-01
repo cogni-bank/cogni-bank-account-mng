@@ -21,7 +21,7 @@ public class UserRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    public void userCreateTest() {
+    public void shouldCreateUser() {
         User user = new User();
         user.withUserId("234234"); // id we get from user management
         List<Account> userAccounts = new ArrayList<>();
@@ -35,6 +35,6 @@ public class UserRepositoryTest {
         user.withAccount(userAccounts);
        user = userRepository.save(user);
 
-      Assert.assertNotNull("Get registered users id", user.getUserId());
+      Assert.assertNotNull("Get registered user's id", user.getUserId());
      }
 }
