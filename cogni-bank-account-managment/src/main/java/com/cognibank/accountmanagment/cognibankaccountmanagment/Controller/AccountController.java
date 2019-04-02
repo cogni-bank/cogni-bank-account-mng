@@ -8,6 +8,8 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.UserSer
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Random;
+
 @RestController
 @RequestMapping("/api/v1/accounts/")
 public class AccountController {
@@ -26,16 +28,18 @@ public class AccountController {
      * @return returning account id to the client
      */
     @PutMapping("create/{id}/{accountType}")
-    public Account create(@PathVariable String id, @PathVariable AccountType accountType) {
+    public String create(@PathVariable String id, @PathVariable AccountType accountType) {
+        Random random =  new Random();
+        int lastTwoDigits = random.nextInt(100);
         User user = userService.findUserById(id);
-
+        Long accountNumber=Long.parseLong((accountService.numberOfAccount()+34000001)+""+lastTwoDigits);
         final Account newAccount = new Account().withUser(user)
                 .withAccountType(accountType)
-                .withAccountNumber(0L)
+                .withAccountNumber(accountNumber)
                 .withBalance(0L);
 
         Account account = accountService.createAccount(newAccount, user);
-        return account;
+        return account.getId();
     }
 
 }

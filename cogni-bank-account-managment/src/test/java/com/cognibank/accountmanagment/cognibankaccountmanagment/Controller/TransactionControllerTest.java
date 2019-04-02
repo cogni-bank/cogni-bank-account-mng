@@ -4,9 +4,8 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Transaction;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.AccountService;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.AccountRepository;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.TransactionService;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,27 +25,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
 @WebMvcTest(UserController.class)
 
 
-public class AcountControllerTest {
+public class TransactionControllerTest {
     @Autowired
     private MockMvc mvc;
 
     @Mock
-    private AccountService accountService;
-    @Mock
     private TransactionService transactionService;
 
-
     @Mock
-    private UserService userService;
+    private AccountRepository accountRepository;
 
     @InjectMocks
-    private AccountController accountController;
+    private TransactionController transactionController;
 
 
     @Before
@@ -57,14 +54,17 @@ public class AcountControllerTest {
         MockitoAnnotations.initMocks(this);
         // MockMvc standalone approach
         mvc = MockMvcBuilders
-                .standaloneSetup(accountController)
+                .standaloneSetup(transactionController)
                 .build();
     }
 
     @Test
-    public void createAccountControllerTest() throws Exception {
+    public void depositToUserAccountTest() throws  Exception{
+
+        Transaction newTransaction = new Transaction();
+
         List<Account> list = new ArrayList<>();
-        User user = new User().withUserId("12").withAccount(list);
+        User user = new User().withUserId("13").withAccount(list);
         Account account = new Account()
                 .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
                 .withUser(user)
@@ -72,19 +72,19 @@ public class AcountControllerTest {
                 .withBalance(0l)
                 .withAccountType(AccountType.Checking);
 
-        Mockito.when(userService.findUserById(Mockito.anyString()))
-                .thenReturn(user);
+        Mockito.when(transactionService.deposit(Mockito.any(Double.class), Mockito.any(Account.class)))
+                .thenReturn(account.getBalance() + newTransaction.getAmount());
 
-        Mockito.when(accountService.createAccount(Mockito.any(Account.class), Mockito.any(User.class)))
+        Mockito.when(accountRepository.findByAccountNumber(Mockito.anyLong()))
                 .thenReturn(account);
 
         mvc.perform(MockMvcRequestBuilders
-                .put("/api/v1/accounts/create/{id}/{accountType}", 12, AccountType.Checking)
+                .put("/api/v1/accounts/deposit/{accountNumber}/{amount}", 78l, 20.0)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("0e4c1211-2c58-4956-b523-ed0d64dc54c4"));
+                .andExpect(content().string(user.getUserId()));
 
     }
 

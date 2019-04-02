@@ -23,7 +23,9 @@ public class AccountService {
         accountRepository.save(account);
         return account;
     }
-
+    public long numberOfAccount(){
+       return accountRepository.count();
+    }
 
 
 }

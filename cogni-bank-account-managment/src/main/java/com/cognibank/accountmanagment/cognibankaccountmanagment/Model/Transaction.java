@@ -18,7 +18,7 @@ public class Transaction {
     @Column(nullable = false)
     private String customerId;
     private double amount;
-    @Column(nullable = false)
+
     private String destinationAccount;
     @Column(nullable = false)
     private TransactionType type;

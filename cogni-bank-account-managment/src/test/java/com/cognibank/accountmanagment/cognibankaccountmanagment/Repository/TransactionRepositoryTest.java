@@ -17,7 +17,5 @@ public class TransactionRepositoryTest {
     @Test
     public void shouldCreateTransactionPerAccount(){
         Assert.assertTrue(true);
-
-
     }
 }

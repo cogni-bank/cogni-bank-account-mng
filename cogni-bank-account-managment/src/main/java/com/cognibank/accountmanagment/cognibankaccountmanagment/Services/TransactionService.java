@@ -1,8 +1,6 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Transaction;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +34,20 @@ public class TransactionService {
 
     public void updateTransaction(Transaction transaction) {
         transactionRepository.save(transaction);
+    }
+
+    public double deposit(double amount, Account account) {
+
+        Transaction transaction = new Transaction()
+                .withAccount(account)
+                .withCustomerId(account.getUser().getUserId())
+                .setAmount(amount)
+                .withType(TransactionType.Credit)
+                .withStatus(TransactionStatus.In_Progress);
+        transactionRepository.save(transaction);
+        Double currentBalance = account.getBalance() + transaction.getAmount();
+        account.withBalance(currentBalance);
+        return currentBalance;
     }
 
 }
