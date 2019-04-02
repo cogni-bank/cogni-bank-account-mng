@@ -2,7 +2,6 @@ package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
 
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.TransactionRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +40,7 @@ public class TransactionServiceTest {
         Account account = new Account()
                 .withAccountNumber(12l)
                 .withAccountType(AccountType.Savings)
-                .withBalance(10000).withtUser(newUser);
+                .withBalance(10000).withUser(newUser);
         userAccounts.add(account);
         newUser.withAccount(userAccounts);
         userService.createUser(newUser);
@@ -71,7 +70,7 @@ public class TransactionServiceTest {
         Account account = new Account()
                 .withAccountNumber(6l)
                 .withAccountType(AccountType.Checking)
-                .withBalance(98000).withtUser(newUser);
+                .withBalance(98000).withUser(newUser);
         userAccounts.add(account);
         newUser.withAccount(userAccounts);
         final User user = userService.createUser(newUser);

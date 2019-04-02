@@ -1,14 +1,13 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Model;
 
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
-public class Account {
-
+public class Account implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
@@ -27,11 +26,10 @@ public class Account {
         return user;
     }
 
-    public Account withtUser(User user) {
+    public Account withUser(User user) {
         this.user = user;
         return this;
     }
-
 
     public String getId() {
         return id;
@@ -69,8 +67,4 @@ public class Account {
         this.balance = balance;
         return this;
     }
-
-
-
-
 }

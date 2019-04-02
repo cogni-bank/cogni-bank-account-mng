@@ -31,7 +31,7 @@ public class UserRepositoryTest {
                 .withBalance(0l)
                 .withAccountNumber(123)
                 .withAccountType(AccountType.Checking)
-                .withtUser(user));
+                .withUser(user));
         user.withAccount(userAccounts);
        user = userRepository.save(user);
 

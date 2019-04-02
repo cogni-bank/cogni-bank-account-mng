@@ -13,29 +13,29 @@ import java.util.List;
 @Service
 public class TransactionService {
 
-   @Autowired
-   private TransactionRepository transactionRepository;
+    @Autowired
+    private TransactionRepository transactionRepository;
 
 
-   public List<Transaction> getTransactionsByCustomerId(String id){
-       return transactionRepository.findTransactionsByCustomerId(id);
-   }
+    public List<Transaction> getTransactionsByCustomerId(String id) {
+        return transactionRepository.findTransactionsByCustomerId(id);
+    }
 
-public List<Transaction> getTransactionByAccountNumber(long accountNumber){
+    public List<Transaction> getTransactionByAccountNumber(long accountNumber) {
 
-       return transactionRepository.findTransactionsByAccountNumber(accountNumber);
-}
+        return transactionRepository.findTransactionsByAccountNumber(accountNumber);
+    }
 
-    public void createTransaction(Transaction transaction){
-       transactionRepository.save(transaction);
-   }
+    public void createTransaction(Transaction transaction) {
+        transactionRepository.save(transaction);
+    }
 
-   public void deleteTransaction(String id){
-       transactionRepository.deleteById(id);
-   }
+    public void deleteTransaction(String id) {
+        transactionRepository.deleteById(id);
+    }
 
-   public void updateTransaction(Transaction transaction){
-       transactionRepository.save(transaction);
-   }
+    public void updateTransaction(Transaction transaction) {
+        transactionRepository.save(transaction);
+    }
 
 }

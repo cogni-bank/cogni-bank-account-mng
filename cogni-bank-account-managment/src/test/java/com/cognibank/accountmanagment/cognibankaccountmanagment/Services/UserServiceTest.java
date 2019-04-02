@@ -11,9 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import sun.font.TrueTypeFont;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -61,7 +59,7 @@ public class UserServiceTest {
         Account account = new Account()
                 .withAccountNumber(12l)
                 .withAccountType(AccountType.Savings)
-                .withBalance(10000).withtUser(newUser);
+                .withBalance(10000).withUser(newUser);
         userAccounts.add(account);
         newUser.withAccount(userAccounts);
         userService.update(newUser);
