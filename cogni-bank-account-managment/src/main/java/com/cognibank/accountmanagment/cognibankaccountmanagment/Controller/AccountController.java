@@ -1,6 +1,5 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Controller;
 
-import com.cognibank.accountmanagment.cognibankaccountmanagment.DTO.AccountDTO;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.AccountNotFoundException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.UserAccountNotFoundException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
