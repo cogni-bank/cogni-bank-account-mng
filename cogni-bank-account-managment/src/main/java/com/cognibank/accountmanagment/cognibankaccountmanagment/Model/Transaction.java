@@ -1,5 +1,8 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,8 +11,9 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn(name = "account_id", insertable=false, updatable= false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Account account;
     @Column(nullable = false)
     private String customerId;

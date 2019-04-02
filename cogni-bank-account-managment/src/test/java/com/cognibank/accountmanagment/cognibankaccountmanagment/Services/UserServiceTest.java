@@ -1,5 +1,6 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.UserAccountNotFoundException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import sun.font.TrueTypeFont;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -39,11 +41,15 @@ public class UserServiceTest {
     }
 
     @Test
-    public void shouldFindUserById() {
+    public void shouldFindUserById() throws UserAccountNotFoundException {
 
-         userService.findUserById("210000");
-        Assert.assertFalse(false);
-        //Assert.assertTrue("User not found", user == null);
+       User userById = userService.findUserById("210000");
+        Assert.assertEquals(userById, Optional.empty());
+
+        userById = userService.findUserById("234234");
+        Assert.assertEquals(userById, userById);
+
+
     }
 
 

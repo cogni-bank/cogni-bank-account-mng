@@ -70,10 +70,7 @@ public class Account {
         return this;
     }
 
-    public Long createAccount() {
-        long accountNumber = (long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
-        return accountNumber;
-    }
+
 
 
 }

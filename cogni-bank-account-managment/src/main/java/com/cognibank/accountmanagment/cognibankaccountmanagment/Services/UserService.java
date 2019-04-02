@@ -16,18 +16,19 @@ public class UserService {
     private UserRepository userRepository;
 
 
-    public User createUser(User newUser) {
+    public User createUser(User newUser)  {
+
         return userRepository.save(newUser);
     }
 
 
-    public boolean findUserById(String id) {
+    public User findUserById(String id) throws UserAccountNotFoundException {
 
-        return userRepository.findById(id) != null ? true : false;
+        return userRepository.findById(id).orElseThrow(null);
 
     }
 
-    public Optional<User> findUser(String id) {
+    public Optional<User> findUser(String id) throws UserAccountNotFoundException {
 
         return userRepository.findById(id) ;
 

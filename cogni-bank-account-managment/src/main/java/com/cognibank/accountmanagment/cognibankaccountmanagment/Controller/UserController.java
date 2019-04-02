@@ -1,17 +1,13 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Controller;
 
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.AccountNotFoundException;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.UserAccountNotFoundException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.AccountService;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -30,13 +26,23 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable("id") String id) throws Exception {
+    public void deleteUser(@PathVariable("id") String id) throws UserAccountNotFoundException {
 
-        userService.deleteUser(id);
+        try {
+            userService.deleteUser(id);
+        }catch (Exception e){
+            throw new UserAccountNotFoundException("User not found", e);
+        }
+
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getUser(@PathVariable("id") String id) {
-        return userService.findUser(id);
+    public ResponseEntity<User> getUser(@PathVariable("id") String id) throws UserAccountNotFoundException {
+        User usr = userService.findUserById(id);
+        if(id==null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(usr);
+
     }
 }

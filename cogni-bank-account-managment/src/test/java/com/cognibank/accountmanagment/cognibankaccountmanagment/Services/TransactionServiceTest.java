@@ -33,10 +33,9 @@ public class TransactionServiceTest {
     }
     @Test
     public void shouldReturnCustomerIdGivenASpecificTransaction(){
-        List<Account> userAccounts;
+        List<Account> userAccounts = new ArrayList<>();;
         Transaction transaction = new Transaction();
 
-        userAccounts = new ArrayList<>();
         newUser.withUserId("0998");
         userService.createUser(newUser);
         Account account = new Account()
@@ -48,7 +47,7 @@ public class TransactionServiceTest {
         userService.createUser(newUser);
 
         transaction
-                .withAccount(newUser.getAccounts().get(0))
+                .withAccount(account)
                 .setAmount(100)
                 .withDestinationAccount("Savings")
                 .withCustomerId(newUser.getUserId())
@@ -56,37 +55,38 @@ public class TransactionServiceTest {
 
         transactionService.createTransaction(transaction);
         List<Transaction> tran = transactionService.getTransactionsByCustomerId(newUser.getUserId());
-        Assert.assertEquals("User tied to the transaction should have the same id as actual",tran.get(0).getCustomerId() , "0998" );
+
+        Assert.assertEquals("User tied to the transaction should have the same id as actual",
+                tran.get(0).getCustomerId() , "0998" );
     }
 
     @Test
-    public void shouldReturnCustemerTransactionForAGivenAccountNumber(){
+    public void shouldReturnCustomerTransactionForAGivenAccountNumber(){
 
-        List<Account> userAccounts;
-        Transaction transactionByAccountNumber = new Transaction();
+        List<Account> userAccounts = new ArrayList<>();;
+        Transaction transaction = new Transaction();
 
-        userAccounts = new ArrayList<>();
-        newUser.withUserId("001");
+        newUser.withUserId("9001");
         userService.createUser(newUser);
         Account account = new Account()
                 .withAccountNumber(6l)
-                .withAccountType(AccountType.Savings)
+                .withAccountType(AccountType.Checking)
                 .withBalance(98000).withtUser(newUser);
         userAccounts.add(account);
         newUser.withAccount(userAccounts);
-        userService.createUser(newUser);
+        final User user = userService.createUser(newUser);
 
-        transactionByAccountNumber
+        transaction
                 .withAccount(newUser.getAccounts().get(0))
                 .setAmount(800)
-                .withDestinationAccount("Savings")
+                .withDestinationAccount("Checking")
                 .withCustomerId(newUser.getUserId())
                 .withType(TransactionType.Debit);
-        transactionService.createTransaction(transactionByAccountNumber);
 
-        List<Transaction> tranByAccNum = transactionService.getTrasactionByAccountNumber(6);
+        transactionService.createTransaction(transaction);
+        transactionService.getTransactionByAccountNumber(6l);
 
-        Assert.assertEquals(tranByAccNum.get(0).getAccount().getAccountNumber(), 6);
+        Assert.assertEquals(transaction.getAccount().getAccountNumber(), 6);
 
 
 
