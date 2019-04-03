@@ -22,8 +22,7 @@ public class TransactionController {
     public String deposit(@PathVariable long accountNumber, @PathVariable double amount) {
         Account account= accountRepository.findByAccountNumber(accountNumber);
         transactionService.deposit(amount,account);
-        String userId = account.getUser().getUserId();
-        return userId;
+        return account.getUserId();
 
     }
 

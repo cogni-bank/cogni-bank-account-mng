@@ -2,11 +2,8 @@ package com.cognibank.accountmanagment.cognibankaccountmanagment.Controller;
 
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Transaction;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.AccountService;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.TransactionService;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(MockitoJUnitRunner.class)
-@WebMvcTest(UserController.class)
+@WebMvcTest(AccountController.class)
 
 
 public class AcountControllerTest {
@@ -40,10 +37,6 @@ public class AcountControllerTest {
     private AccountService accountService;
     @Mock
     private TransactionService transactionService;
-
-
-    @Mock
-    private UserService userService;
 
     @InjectMocks
     private AccountController accountController;
@@ -64,18 +57,14 @@ public class AcountControllerTest {
     @Test
     public void createAccountControllerTest() throws Exception {
         List<Account> list = new ArrayList<>();
-        User user = new User().withUserId("12").withAccount(list);
         Account account = new Account()
                 .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
-                .withUser(user)
                 .withAccountNumber(78l)
                 .withBalance(0l)
+                .withUserId("12")
                 .withAccountType(AccountType.Checking);
 
-        Mockito.when(userService.findUserById(Mockito.anyString()))
-                .thenReturn(user);
-
-        Mockito.when(accountService.createAccount(Mockito.any(Account.class), Mockito.any(User.class)))
+        Mockito.when(accountService.createAccount(Mockito.any(Account.class)))
                 .thenReturn(account);
 
         mvc.perform(MockMvcRequestBuilders

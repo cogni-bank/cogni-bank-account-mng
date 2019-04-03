@@ -11,12 +11,14 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "account_id", insertable=false, updatable= false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id", insertable = false, updatable = false)
     private Account account;
+
     @Column(nullable = false)
     private String customerId;
+
     private double amount;
 
     private String destinationAccount;
@@ -25,15 +27,15 @@ public class Transaction {
     @Column(nullable = false)
     private TransactionStatus status = TransactionStatus.In_Progress;
 
-
     public Long getId() {
         return id;
-
     }
+
     public Transaction setId(long id) {
         this.id = id;
         return this;
     }
+
     public TransactionType getType() {
         return type;
     }
@@ -88,5 +90,24 @@ public class Transaction {
         return this;
     }
 
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public void setDestinationAccount(String destinationAccount) {
+        this.destinationAccount = destinationAccount;
+    }
+
+    public void setType(TransactionType type) {
+        this.type = type;
+    }
+
+    public void setStatus(TransactionStatus status) {
+        this.status = status;
+    }
 
 }

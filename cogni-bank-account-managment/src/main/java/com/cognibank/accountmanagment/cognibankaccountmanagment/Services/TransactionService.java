@@ -40,7 +40,7 @@ public class TransactionService {
 
         Transaction transaction = new Transaction()
                 .withAccount(account)
-                .withCustomerId(account.getUser().getUserId())
+                .withCustomerId(account.getUserId())
                 .setAmount(amount)
                 .withType(TransactionType.Credit)
                 .withStatus(TransactionStatus.In_Progress);

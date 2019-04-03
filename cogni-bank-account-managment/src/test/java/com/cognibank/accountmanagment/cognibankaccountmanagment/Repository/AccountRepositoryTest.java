@@ -3,7 +3,6 @@ package com.cognibank.accountmanagment.cognibankaccountmanagment.Repository;
 
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +16,17 @@ import static org.junit.Assert.assertEquals;
 public class AccountRepositoryTest {
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private AccountRepository accountRepository;
 
     @Test
     public void shouldGetAnAccountWithItsAccountNumber() {
-        User user = new User()
-                .withUserId("a123414123123");
-        user = userRepository.save(user);
-
 
         long expectedAccountNumber = 123L;
         Account newAccount = new Account()
                 .withAccountNumber(expectedAccountNumber)
                 .withAccountType(AccountType.Checking)
                 .withBalance(100L)
-                .withUser(user);
+                .withUserId("a123414123123");
         newAccount = accountRepository.save(newAccount);
 
         Account foundAccount = accountRepository.findByAccountNumber(expectedAccountNumber);

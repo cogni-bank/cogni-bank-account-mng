@@ -3,7 +3,6 @@ package com.cognibank.accountmanagment.cognibankaccountmanagment.Controller;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Transaction;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.User;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.AccountRepository;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.TransactionService;
 import org.junit.Before;
@@ -29,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
-@WebMvcTest(UserController.class)
+@WebMvcTest(TransactionController.class)
 
 
 public class TransactionControllerTest {
@@ -64,10 +63,9 @@ public class TransactionControllerTest {
         Transaction newTransaction = new Transaction();
 
         List<Account> list = new ArrayList<>();
-        User user = new User().withUserId("13").withAccount(list);
         Account account = new Account()
                 .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
-                .withUser(user)
+                .withUserId("12")
                 .withAccountNumber(78l)
                 .withBalance(0l)
                 .withAccountType(AccountType.Checking);
@@ -84,7 +82,7 @@ public class TransactionControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(user.getUserId()));
+                .andExpect(content().string(account.getUserId()));
 
     }
 
