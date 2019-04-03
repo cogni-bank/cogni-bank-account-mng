@@ -77,6 +77,28 @@ public class AcountControllerTest {
 
     }
 
+    @Test
+    public void updateAccountStatusControllerTest() throws Exception {
+        List<Account> list = new ArrayList<>();
+        Account account = new Account()
+                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
+                .withAccountNumber(78l)
+                .withBalance(0l)
+                .withUserId("12")
+                .withAccountType(AccountType.Checking);
+        account.setStatus("FREEZE");
 
+        Mockito.when(accountService.changeAccountStatus(Mockito.any(Long.class),Mockito.any(String.class)))
+                .thenReturn(account.getStatus());
+
+        mvc.perform(MockMvcRequestBuilders
+                .put("/api/v1/accounts/update/{accountNumber}/{status}", 78l, "FREEZE")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("FREEZE"));
+
+    }
 
 }

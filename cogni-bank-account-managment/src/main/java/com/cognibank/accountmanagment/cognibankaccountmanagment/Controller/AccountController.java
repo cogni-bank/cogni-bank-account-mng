@@ -42,4 +42,13 @@ public class AccountController {
 
     }
 
+
+    @PutMapping("update/{accountNumber}/{status}")
+
+    public String updateStatus( @PathVariable Long accountNumber, @PathVariable String status) {
+
+       return accountService.changeAccountStatus(accountNumber, status);
+
+    }
+
 }

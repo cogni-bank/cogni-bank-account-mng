@@ -37,17 +37,23 @@ public class TransactionService {
     }
 
     public double deposit(double amount, Account account) {
+        if (account.getStatus().equals("ACTIVE")) {
+            Transaction transaction = new Transaction()
+                    .withAccount(account)
+                    .withCustomerId(account.getUserId())
+                    .setAmount(amount)
+                    .withType(TransactionType.Credit)
+                    .withStatus(TransactionStatus.In_Progress);
+            transactionRepository.save(transaction);
+            Double currentBalance = account.getBalance() + transaction.getAmount();
+            account.withBalance(currentBalance);
+            return currentBalance;
+        }
+        else{
+            return 0;
 
-        Transaction transaction = new Transaction()
-                .withAccount(account)
-                .withCustomerId(account.getUserId())
-                .setAmount(amount)
-                .withType(TransactionType.Credit)
-                .withStatus(TransactionStatus.In_Progress);
-        transactionRepository.save(transaction);
-        Double currentBalance = account.getBalance() + transaction.getAmount();
-        account.withBalance(currentBalance);
-        return currentBalance;
+        }
     }
+
 
 }

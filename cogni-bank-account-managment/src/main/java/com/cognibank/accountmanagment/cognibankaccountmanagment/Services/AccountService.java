@@ -27,7 +27,21 @@ public class AccountService {
 
     public long numberOfAccount() {
         return accountRepository.count();
+
     }
+
+     public String changeAccountStatus(long accountNumber, String status){
+        Account account = accountRepository.findByAccountNumber(accountNumber);
+       account.setStatus(status);
+        accountRepository.save(account);
+        return accountRepository.findByAccountNumber(accountNumber).getStatus();
+
+     }
+    public String getAccountStatus(long accountNumber){
+
+        return accountRepository.findByAccountNumber(accountNumber).getStatus();
+    }
+
 
 
 }

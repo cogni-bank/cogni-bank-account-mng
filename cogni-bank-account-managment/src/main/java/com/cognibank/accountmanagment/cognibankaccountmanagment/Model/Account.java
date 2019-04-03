@@ -23,6 +23,8 @@ public class Account implements Serializable {
     @Column(nullable = false)
     private AccountType accountType;
 
+    private String status = "ACTIVE";
+
     @OneToMany(
             mappedBy = "account",
             cascade = CascadeType.ALL,
@@ -120,5 +122,13 @@ public class Account implements Serializable {
     public Account withUserId(String userId) {
         this.userId = userId;
         return this;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -1,9 +1,9 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 
 @Entity
 public class Transaction {
@@ -20,6 +20,10 @@ public class Transaction {
     private String customerId;
 
     private double amount;
+
+
+
+    private LocalDateTime transactionDate = LocalDateTime.now();
 
     private String destinationAccount;
     @Column(nullable = false)
@@ -110,4 +114,11 @@ public class Transaction {
         this.status = status;
     }
 
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
+    }
+
+    public void setTransactionDate(LocalDateTime transactionDate) {
+        this.transactionDate = transactionDate;
+    }
 }

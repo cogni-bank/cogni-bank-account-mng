@@ -78,6 +78,5 @@ public class TransactionServiceTest {
 
         Assert.assertEquals(transaction.getAccount().getAccountNumber(), 6);
 
-
     }
 }

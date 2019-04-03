@@ -34,4 +34,26 @@ public class AccountRepositoryTest {
         assertEquals("Account should be the same", newAccount, foundAccount);
 
     }
+    @Test
+    public void shouldGetAnAccountUpdated() {
+
+        long expectedAccountNumber = 123L;
+        Account newAccount = new Account()
+                .withAccountNumber(expectedAccountNumber)
+                .withAccountType(AccountType.Checking)
+                .withBalance(100L)
+                .withUserId("a123414123123");
+                newAccount.setStatus("CLOSED");
+        newAccount = accountRepository.save(newAccount);
+
+        newAccount = accountRepository.findByAccountNumber(123l);
+        newAccount.setStatus("FREEZE");
+
+       accountRepository.save(newAccount);
+
+     //   Account foundAccount = accountRepository.findByAccountNumber(expectedAccountNumber);
+
+        assertEquals("Account should be the same", accountRepository.findByAccountNumber(123l).getStatus(), "FREEZE");
+
+    }
 }
