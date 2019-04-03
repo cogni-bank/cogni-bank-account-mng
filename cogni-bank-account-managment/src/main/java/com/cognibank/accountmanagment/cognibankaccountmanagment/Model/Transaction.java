@@ -13,7 +13,7 @@ public class Transaction {
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id", insertable = false, updatable = false)
+    @JoinColumn(name = "account_id")
     private Account account;
 
     @Column(nullable = false)
@@ -120,5 +120,19 @@ public class Transaction {
 
     public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", account=" + account +
+                ", customerId='" + customerId + '\'' +
+                ", amount=" + amount +
+                ", transactionDate=" + transactionDate +
+                ", destinationAccount='" + destinationAccount + '\'' +
+                ", type=" + type +
+                ", status=" + status +
+                '}';
     }
 }

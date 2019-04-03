@@ -30,18 +30,22 @@ public class AccountService {
 
     }
 
-     public String changeAccountStatus(long accountNumber, String status){
+    public String changeAccountStatus(long accountNumber, String status) {
         Account account = accountRepository.findByAccountNumber(accountNumber);
-       account.setStatus(status);
+        account.setStatus(status);
         accountRepository.save(account);
         return accountRepository.findByAccountNumber(accountNumber).getStatus();
 
-     }
-    public String getAccountStatus(long accountNumber){
+    }
+
+    public String getAccountStatus(long accountNumber) {
 
         return accountRepository.findByAccountNumber(accountNumber).getStatus();
     }
 
+    public Account getAccountByAccountNumber(long accountNumber) {
+        return accountRepository.findByAccountNumber(accountNumber);
+    }
 
 
 }

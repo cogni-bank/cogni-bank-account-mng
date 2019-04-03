@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,9 @@ public class AccountServiceTest {
 
         assertEquals("Account should same", account, userAccounts.get(0));
     }
+
     @Test
+    @Transactional
     public void reportTest() {
 //        final String userId = "ABCD1234";
 
@@ -54,7 +57,7 @@ public class AccountServiceTest {
                 .withAccountType(AccountType.Checking);
         account = accountService.createAccount(account);
        // Transaction transaction=new Transaction();
-        LocalDateTime startDate=LocalDateTime.now();
+        LocalDateTime startDate=LocalDateTime.now().minusSeconds(1);
         LocalDateTime endDate=startDate.plusHours(1);
         transactionService.deposit(57676,account);
         transactionService.deposit(157676,account);
@@ -65,5 +68,6 @@ public class AccountServiceTest {
 
         List<Transaction> transactions=transactionService.report(78L,startDate, endDate);
         Assert.assertEquals("Number of transaction should be", 5, transactions.size());
+        assertEquals("Account must be the same", account, transactions.get(0).getAccount());
     }
 }

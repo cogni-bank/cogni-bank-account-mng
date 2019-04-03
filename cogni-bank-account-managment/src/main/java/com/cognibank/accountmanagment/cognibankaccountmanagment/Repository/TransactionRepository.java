@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, String> {
@@ -21,5 +22,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, String
             "LEFT JOIN account a ON :account_number = a.account_number;",nativeQuery = true)
     List<Transaction> findTransactionsByAccountNumber(@Param("account_number") long accountNumber);
 
-
+    Optional<List<Transaction>> findByAccountId(String accountId);
 }

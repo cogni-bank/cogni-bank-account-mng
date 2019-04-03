@@ -1,5 +1,6 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.AccountNotFoundException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
-
+    @Autowired
+    private AccountService accountService;
     @Autowired
     private TransactionRepository transactionRepository;
 
@@ -50,19 +52,21 @@ public class TransactionService {
             Double currentBalance = account.getBalance() + transaction.getAmount();
             account.withBalance(currentBalance);
             return currentBalance;
-        }
-        else{
+        } else {
             return 0;
 
         }
     }
-    public List<Transaction> report(long accountNumber, LocalDateTime startDate, LocalDateTime endDate){
 
-       List<Transaction> allTransaction = transactionRepository.findAll()
-                                            .stream().filter(acnb -> /*acnb.getAccount().getAccountNumber()*/78l==accountNumber)
-                                                    .filter(dateReport -> (dateReport.getTransactionDate().isBefore(endDate) && dateReport.getTransactionDate().isAfter(startDate)))
-                                                    .collect(Collectors.toList());
-             return allTransaction;
+    public List<Transaction> report(long accountNumber, LocalDateTime startDate, LocalDateTime endDate) {
+        final Account account = accountService.getAccountByAccountNumber(accountNumber);
+
+        List<Transaction> allTransaction = transactionRepository.findByAccountId(account.getId())
+                .orElseThrow(AccountNotFoundException::new)
+                .stream()
+                .filter(dateReport -> (dateReport.getTransactionDate().isBefore(endDate) && dateReport.getTransactionDate().isAfter(startDate)))
+                .collect(Collectors.toList());
+        return allTransaction;
     }
 
 
