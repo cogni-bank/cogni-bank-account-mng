@@ -21,4 +21,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, String
             "LEFT JOIN account a ON :account_number = a.account_number;",nativeQuery = true)
     List<Transaction> findTransactionsByAccountNumber(@Param("account_number") long accountNumber);
 
+
 }

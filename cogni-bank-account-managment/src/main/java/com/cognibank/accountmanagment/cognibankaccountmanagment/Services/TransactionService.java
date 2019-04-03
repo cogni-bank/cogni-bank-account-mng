@@ -5,8 +5,10 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.Trans
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -53,6 +55,14 @@ public class TransactionService {
             return 0;
 
         }
+    }
+    public List<Transaction> report(long accountNumber, LocalDateTime startDate, LocalDateTime endDate){
+
+       List<Transaction> allTransaction = transactionRepository.findAll()
+                                            .stream().filter(acnb -> /*acnb.getAccount().getAccountNumber()*/78l==accountNumber)
+                                                    .filter(dateReport -> (dateReport.getTransactionDate().isBefore(endDate) && dateReport.getTransactionDate().isAfter(startDate)))
+                                                    .collect(Collectors.toList());
+             return allTransaction;
     }
 
 
