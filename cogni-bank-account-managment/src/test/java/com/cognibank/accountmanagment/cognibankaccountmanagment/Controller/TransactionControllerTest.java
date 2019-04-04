@@ -20,9 +20,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -86,6 +89,30 @@ public class TransactionControllerTest {
 
     }
 
+    @Test
+    public void reportTest() throws  Exception{
 
+        List<Account> list = new ArrayList<>();
+        Account account = new Account()
+                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
+                .withUserId("12")
+                .withAccountNumber(78l)
+                .withBalance(0l)
+                .withAccountType(AccountType.Checking);
+        List<Transaction> transactionList;
+        Mockito.when(transactionList=transactionService.report(Mockito.any(Long.class), Mockito.any(LocalDate.class), Mockito.any(LocalDate.class)))
+                .thenReturn(transactionList);
+
+        LocalDate startDate=LocalDate.now().minusDays(1l);
+        LocalDate endDate=LocalDate.now().plusDays(1l);
+        mvc.perform(MockMvcRequestBuilders
+                .put("/api/v1/accounts/report/{accountNumber}/{startDate}/{endDate}", 78l, startDate, endDate)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(transactionList.toString()));
+
+    }
 
 }

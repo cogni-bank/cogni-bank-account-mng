@@ -45,29 +45,5 @@ public class AccountServiceTest {
         assertEquals("Account should same", account, userAccounts.get(0));
     }
 
-    @Test
-    @Transactional
-    public void reportTest() {
-//        final String userId = "ABCD1234";
 
-        Account account = new Account()
-                .withBalance(0L)
-                .withAccountNumber(78L)
-                .withUserId("ABCD1234")
-                .withAccountType(AccountType.Checking);
-        account = accountService.createAccount(account);
-       // Transaction transaction=new Transaction();
-        LocalDateTime startDate=LocalDateTime.now().minusSeconds(1);
-        LocalDateTime endDate=startDate.plusHours(1);
-        transactionService.deposit(57676,account);
-        transactionService.deposit(157676,account);
-        transactionService.deposit(3,account);
-
-        transactionService.deposit(56,account);
-        transactionService.deposit(56,account);
-
-        List<Transaction> transactions=transactionService.report(78L,startDate, endDate);
-        Assert.assertEquals("Number of transaction should be", 5, transactions.size());
-        assertEquals("Account must be the same", account, transactions.get(0).getAccount());
-    }
 }

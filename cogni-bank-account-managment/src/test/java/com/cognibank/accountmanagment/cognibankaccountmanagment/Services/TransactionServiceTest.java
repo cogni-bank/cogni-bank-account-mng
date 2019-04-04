@@ -10,8 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -78,5 +83,30 @@ public class TransactionServiceTest {
 
         Assert.assertEquals(transaction.getAccount().getAccountNumber(), 6);
 
+    }
+    @Test
+    @Transactional
+    public void reportTest() {
+//        final String userId = "ABCD1234";
+
+        Account account = new Account()
+                .withBalance(0L)
+                .withAccountNumber(78L)
+                .withUserId("ABCD1234")
+                .withAccountType(AccountType.Checking);
+        account = accountService.createAccount(account);
+        // Transaction transaction=new Transaction();
+        LocalDate startDate=LocalDate.now().minusDays(1l);
+        LocalDate endDate=LocalDate.now().plusDays(1l);
+        transactionService.deposit(57676,account);
+        transactionService.deposit(157676,account);
+        transactionService.deposit(3,account);
+
+        transactionService.deposit(56,account);
+        transactionService.deposit(56,account);
+
+        List<Transaction> transactions=transactionService.report(78L,startDate, endDate);
+        Assert.assertEquals("Number of transaction should be", 5, transactions.size());
+        assertEquals("Account must be the same", account, transactions.get(0).getAccount());
     }
 }

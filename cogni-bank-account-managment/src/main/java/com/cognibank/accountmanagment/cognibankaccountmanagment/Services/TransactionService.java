@@ -6,6 +6,7 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.Trans
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +33,12 @@ public class TransactionService {
         transactionRepository.save(transaction);
     }
 
+    //Do we need this?
     public void deleteTransaction(String id) {
         transactionRepository.deleteById(id);
     }
 
+    //Do we need this?
     public void updateTransaction(Transaction transaction) {
         transactionRepository.save(transaction);
     }
@@ -53,21 +56,27 @@ public class TransactionService {
             account.withBalance(currentBalance);
             return currentBalance;
         } else {
+            //May be we should throw an exception here if the account is not active
             return 0;
 
         }
     }
 
-    public List<Transaction> report(long accountNumber, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<Transaction> report(long accountNumber, LocalDate startDate, LocalDate endDate) {
         final Account account = accountService.getAccountByAccountNumber(accountNumber);
 
         List<Transaction> allTransaction = transactionRepository.findByAccountId(account.getId())
                 .orElseThrow(AccountNotFoundException::new)
                 .stream()
-                .filter(dateReport -> (dateReport.getTransactionDate().isBefore(endDate) && dateReport.getTransactionDate().isAfter(startDate)))
+                .filter(dateReport -> (dateReport.getTransactionDate().isBefore(manageDate(endDate)) && dateReport.getTransactionDate().isAfter(manageDate(startDate))))
                 .collect(Collectors.toList());
         return allTransaction;
     }
+
+    public LocalDateTime manageDate(LocalDate localDate){
+        return localDate.atStartOfDay();
+    }
+
 
 
 }
