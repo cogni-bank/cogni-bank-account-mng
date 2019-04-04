@@ -84,6 +84,22 @@ public class TransactionServiceTest {
         Assert.assertEquals(transaction.getAccount().getAccountNumber(), 6);
 
     }
+
+    @Test
+    @Transactional
+    public void depositTest(){
+        Account account = new Account()
+                .withUserId("1")
+                .withAccountType(AccountType.Savings)
+                .withAccountNumber(10l)
+                .withBalance(100.0);
+        account = accountService.createAccount(account);
+        double actualBalance = transactionService.deposit(10.0, account);
+        assertEquals("Account balance should be updated after the deposit.", 110.0,actualBalance, 0.1);
+    }
+
+
+
     @Test
     @Transactional
     public void reportTest() {
