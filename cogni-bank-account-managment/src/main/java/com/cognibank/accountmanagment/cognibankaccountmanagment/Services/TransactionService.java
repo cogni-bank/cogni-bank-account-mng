@@ -1,6 +1,7 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.AccountNotFoundException;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBalanceException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,28 @@ public class TransactionService {
             transactionRepository.save(transaction);
             Double currentBalance = account.getBalance() + transaction.getAmount();
             account.withBalance(currentBalance);
+            return currentBalance;
+        } else {
+            //May be we should throw an exception here if the account is not active
+            return 0;
+
+        }
+    }
+
+    public double withdraw(double amount, Account account) {
+        if (account.getStatus().equals("ACTIVE")) {
+            Transaction transaction = new Transaction()
+                    .withAccount(account)
+                    .withCustomerId(account.getUserId())
+                    .setAmount(amount)
+                    .withType(TransactionType.Debit)
+                    .withStatus(TransactionStatus.In_Progress);
+            transactionRepository.save(transaction);
+            Double currentBalance = account.getBalance() - transaction.getAmount();
+            account.withBalance(currentBalance);
+            if( currentBalance < 25.0){
+                throw new LowBalanceException("Low balance: $"+currentBalance);
+            }
             return currentBalance;
         } else {
             //May be we should throw an exception here if the account is not active

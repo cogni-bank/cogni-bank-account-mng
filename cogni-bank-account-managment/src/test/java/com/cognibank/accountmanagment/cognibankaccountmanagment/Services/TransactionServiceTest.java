@@ -99,6 +99,20 @@ public class TransactionServiceTest {
     }
 
 
+    @Test
+    @Transactional
+    public void withdrawTest(){
+        Account account = new Account()
+                .withUserId("1")
+                .withAccountType(AccountType.Savings)
+                .withAccountNumber(10l)
+                .withBalance(100.0);
+        account = accountService.createAccount(account);
+        double actualBalance = transactionService.withdraw(10.0, account);
+        assertEquals("Account balance should be updated after the deposit.", 90.0,actualBalance, 0.1);
+    }
+
+
 
     @Test
     @Transactional
