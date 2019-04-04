@@ -3,6 +3,7 @@ package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.AccountNotFoundException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBalanceException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.AccountRepository;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    @Autowired
+    private AccountRepository accountRepository;
 
     public List<Transaction> getTransactionsByCustomerId(String id) {
         return transactionRepository.findTransactionsByCustomerId(id);
@@ -54,7 +57,8 @@ public class TransactionService {
                     .withStatus(TransactionStatus.In_Progress);
             transactionRepository.save(transaction);
             Double currentBalance = account.getBalance() + transaction.getAmount();
-            account.withBalance(currentBalance);
+            account.setBalance(currentBalance);
+            accountRepository.save(account);
             return currentBalance;
         } else {
             //May be we should throw an exception here if the account is not active
@@ -63,7 +67,7 @@ public class TransactionService {
         }
     }
 
-    public double withdraw(double amount, Account account) {
+    public double withdraw(double amount, Account account) throws LowBalanceException{
         if (account.getStatus().equals("ACTIVE")) {
             Transaction transaction = new Transaction()
                     .withAccount(account)
@@ -74,8 +78,11 @@ public class TransactionService {
             transactionRepository.save(transaction);
             Double currentBalance = account.getBalance() - transaction.getAmount();
             account.withBalance(currentBalance);
+            accountRepository.save(account);
             if( currentBalance < 25.0){
                 throw new LowBalanceException("Low balance: $"+currentBalance);
+
+                //send the message to the queue to notify the client by email or phone
             }
             return currentBalance;
         } else {

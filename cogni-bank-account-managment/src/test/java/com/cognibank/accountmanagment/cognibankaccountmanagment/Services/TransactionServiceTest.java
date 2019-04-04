@@ -1,6 +1,7 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
 
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBalanceException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,7 +9,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -17,9 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class TransactionServiceTest {
 
     @Autowired
@@ -101,7 +106,7 @@ public class TransactionServiceTest {
 
     @Test
     @Transactional
-    public void withdrawTest(){
+    public void withdrawTest() throws Exception{
         Account account = new Account()
                 .withUserId("1")
                 .withAccountType(AccountType.Savings)
@@ -113,6 +118,17 @@ public class TransactionServiceTest {
     }
 
 
+    @Test//(expected = LowBalanceException.class)
+    @Transactional
+    public void withdrawTestForLowBalance() throws Exception{
+        Account account = new Account()
+                .withUserId("1")
+                .withAccountType(AccountType.Savings)
+                .withAccountNumber(10l)
+                .withBalance(100.0);
+        account = accountService.createAccount(account);
+        double actualBalance = transactionService.withdraw(80.0, account);
+    }
 
     @Test
     @Transactional

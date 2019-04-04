@@ -38,7 +38,7 @@ public class AccountController {
     private long generateAccountNumber(){
         Random random =  new Random();
         int lastTwoDigits = random.nextInt(100);
-        return Long.parseLong((accountService.numberOfAccount()+34000001)+""+lastTwoDigits);
+        return Long.parseLong((accountService.numberOfAccount()+34000001)+""+((lastTwoDigits<10)?(0+""+lastTwoDigits):lastTwoDigits));
 
     }
 

@@ -1,5 +1,6 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Controller;
 
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBalanceException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Transaction;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.AccountRepository;
@@ -28,9 +29,21 @@ public class TransactionController {
         return account.getUserId();
     }
 
+    @PutMapping("withdraw/{accountNumber}/{amount}")
+    public String withdraw(@PathVariable long accountNumber, @PathVariable double amount) {
+        Account account= accountRepository.findByAccountNumber(accountNumber);
+
+        try {
+            transactionService.withdraw(amount,account);
+        }
+        catch(LowBalanceException e) {
+            return e.getLocalizedMessage();
+        }
+        return account.getUserId();
+    }
+
     @PutMapping("report/{accountNumber}/{startDate}/{endDate}")
     public String report(@PathVariable long accountNumber, @PathVariable String startDate, @PathVariable String endDate) {
-
         return toStringForReport(transactionService.report(accountNumber,LocalDate.parse(startDate),LocalDate.parse(endDate)));
     }
 
