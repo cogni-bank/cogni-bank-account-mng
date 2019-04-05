@@ -57,7 +57,10 @@ public class TransactionController {
                 "\"Transaction Status:\""+tran.getStatus()+"\","+
                 "\"Transaction Amount:\""+tran.getAmount()+"\"},");
         });
-        return "{"+result.replace(result.length()-1,result.length(),"}");
+        if(result.length() != 0)
+            return "{"+result.replace(result.length()-1,result.length(),"}");
+        else
+            return "{}";
     }
 
 
