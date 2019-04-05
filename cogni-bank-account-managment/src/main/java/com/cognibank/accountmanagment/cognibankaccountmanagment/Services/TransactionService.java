@@ -7,6 +7,7 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.Accou
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -91,7 +92,7 @@ public class TransactionService {
 
         }
     }
-
+//@Transactional
     public List<Transaction> report(long accountNumber, LocalDate startDate, LocalDate endDate) {
         final Account account = accountService.getAccountByAccountNumber(accountNumber);
 

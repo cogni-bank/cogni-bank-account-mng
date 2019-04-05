@@ -28,6 +28,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -65,7 +67,7 @@ public class TransactionControllerTest {
     }
 
     @Test
-    public void depositToUserAccountTest() throws  Exception{
+    public void depositToUserAccountTest() throws Exception {
 
         Transaction newTransaction = new Transaction();
 
@@ -92,7 +94,7 @@ public class TransactionControllerTest {
     }
 
     @Test
-    public void withdrawToUserAccountTest() throws  Exception{
+    public void withdrawToUserAccountTest() throws Exception {
 
         Transaction newTransaction = new Transaction();
 
@@ -119,9 +121,8 @@ public class TransactionControllerTest {
                 .andExpect(content().string(account.getUserId()));
     }
 
-    @Ignore
-    @Test(expected = LowBalanceException.class)
-    public void accountBalanceExceptionTest() throws Exception{
+    @Test
+    public void accountBalanceExceptionTest() throws Exception {
 
         Transaction newTransaction = new Transaction();
 
@@ -143,11 +144,13 @@ public class TransactionControllerTest {
                 .put("/api/v1/accounts/withdraw/{accountNumber}/{amount}", 78l, 20.0)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andDo(print());
+                .andDo(print())
+                .andExpect(status().isUnavailableForLegalReasons())
+                .andExpect(status().reason(equalTo("Account balance is too low.")));
     }
 
     @Test
-    public void reportTest() throws  Exception{
+    public void reportTest() throws Exception {
 
         List<Account> list = new ArrayList<>();
         Account account = new Account()
@@ -157,11 +160,11 @@ public class TransactionControllerTest {
                 .withBalance(0l)
                 .withAccountType(AccountType.Checking);
         List<Transaction> transactionList;
-        Mockito.when(transactionList=transactionService.report(Mockito.any(Long.class), Mockito.any(LocalDate.class), Mockito.any(LocalDate.class)))
+        Mockito.when(transactionList = transactionService.report(Mockito.any(Long.class), Mockito.any(LocalDate.class), Mockito.any(LocalDate.class)))
                 .thenReturn(transactionList);
 
-        LocalDate startDate=LocalDate.now().minusDays(1l);
-        LocalDate endDate=LocalDate.now().plusDays(1l);
+        LocalDate startDate = LocalDate.now().minusDays(1l);
+        LocalDate endDate = LocalDate.now().plusDays(1l);
         mvc.perform(MockMvcRequestBuilders
                 .put("/api/v1/accounts/report/{accountNumber}/{startDate}/{endDate}", 78l, startDate, endDate)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -171,10 +174,11 @@ public class TransactionControllerTest {
                 .andExpect(content().string(new TransactionController().toStringForReport(transactionList)));
 
     }
-    @Test
-    public void toStringForReportTest(){
 
-        Transaction transaction1=new Transaction(),transaction2=new Transaction();
+    @Test
+    public void toStringForReportTest() {
+
+        Transaction transaction1 = new Transaction(), transaction2 = new Transaction();
 
         transaction1.setId(1);
         transaction1.setTransactionDate(LocalDateTime.parse("2019-04-04T17:30:49.189"));
@@ -188,16 +192,16 @@ public class TransactionControllerTest {
         transaction2.setStatus(TransactionStatus.In_Progress);
         transaction2.setAmount(10.0);
 
-        String expected="{{\"ID\":\"1\",\"Transaction Date\":\"2019-04-04T17:30:49.189\","+
-                "\"Transaction Type\":\"Credit\",\"Transaction Status:\"In_Progress\",\""+
-                "Transaction Amount:\"108.0\"},{\"ID\":\"2\",\"Transaction Date\":\"2019-0"+
-                "4-04T17:33:26.158\",\"Transaction Type\":\"Debit\",\"Transaction Status:\""+
+        String expected = "{{\"ID\":\"1\",\"Transaction Date\":\"2019-04-04T17:30:49.189\"," +
+                "\"Transaction Type\":\"Credit\",\"Transaction Status:\"In_Progress\",\"" +
+                "Transaction Amount:\"108.0\"},{\"ID\":\"2\",\"Transaction Date\":\"2019-0" +
+                "4-04T17:33:26.158\",\"Transaction Type\":\"Debit\",\"Transaction Status:\"" +
                 "In_Progress\",\"Transaction Amount:\"10.0\"}}";
-        List<Transaction> transactions=new ArrayList<>();
+        List<Transaction> transactions = new ArrayList<>();
         transactions.add(transaction1);
         transactions.add(transaction2);
 
-        Assert.assertEquals("Representation Should Matched",expected,new TransactionController().toStringForReport(transactions));
+        Assert.assertEquals("Representation Should Matched", expected, new TransactionController().toStringForReport(transactions));
 
     }
 
