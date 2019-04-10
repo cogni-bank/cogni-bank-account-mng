@@ -120,6 +120,34 @@ public class TransactionControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(account.getUserId()));
     }
+    @Test
+    //return result in xml format
+    public void withdrawToUserXMLAccountTest() throws Exception {
+
+        Transaction newTransaction = new Transaction();
+
+        List<Account> list = new ArrayList<>();
+        Account account = new Account()
+                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
+                .withUserId("12")
+                .withAccountNumber(78l)
+                .withBalance(0l)
+                .withAccountType(AccountType.Savings);
+
+        Mockito.when(transactionService.withdraw(Mockito.any(Double.class), Mockito.any(Account.class)))
+                .thenReturn(account.getBalance() - newTransaction.getAmount());
+
+        Mockito.when(accountRepository.findByAccountNumber(Mockito.anyLong()))
+                .thenReturn(account);
+
+        mvc.perform(MockMvcRequestBuilders
+                .put("/api/v1/accounts/withdraw/{accountNumber}/{amount}", 78l, 20.0)
+                .contentType(MediaType.APPLICATION_XML)
+                .accept(MediaType.APPLICATION_XML))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(account.getUserId()));
+    }
 
     @Test
     public void accountBalanceExceptionTest() throws Exception {
@@ -175,6 +203,33 @@ public class TransactionControllerTest {
 
     }
 
+    //report using XML data
+    @Test
+    public void reportXmlTest() throws Exception {
+
+        List<Account> list = new ArrayList<>();
+        Account account = new Account()
+                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
+                .withUserId("12")
+                .withAccountNumber(78l)
+                .withBalance(0l)
+                .withAccountType(AccountType.Checking);
+        List<Transaction> transactionList;
+        Mockito.when(transactionList = transactionService.report(Mockito.any(Long.class), Mockito.any(LocalDate.class), Mockito.any(LocalDate.class)))
+                .thenReturn(transactionList);
+
+        LocalDate startDate = LocalDate.now().minusDays(1l);
+        LocalDate endDate = LocalDate.now().plusDays(1l);
+        mvc.perform(MockMvcRequestBuilders
+                .put("/api/v1/accounts/reportXML/{accountNumber}/{startDate}/{endDate}", 78l, startDate, endDate)
+                .contentType(MediaType.APPLICATION_XML)
+                .accept(MediaType.APPLICATION_XML))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(new TransactionController().toStringForReportXML(transactionList)));
+
+    }
+
     @Test
     public void toStringForReportTest() {
 
@@ -202,6 +257,37 @@ public class TransactionControllerTest {
         transactions.add(transaction2);
 
         Assert.assertEquals("Representation Should Matched", expected, new TransactionController().toStringForReport(transactions));
+
+    }
+
+    //XML transformer
+    @Test
+    public void toStringForReportXMLTest() {
+
+        Transaction transaction1 = new Transaction(), transaction2 = new Transaction();
+
+        transaction1.setId(1);
+        transaction1.setTransactionDate(LocalDateTime.parse("2019-04-04T17:30:49.189"));
+        transaction1.setType(TransactionType.Credit);
+        transaction1.setStatus(TransactionStatus.In_Progress);
+        transaction1.setAmount(108.0);
+
+//        transaction2.setId(2);
+//        transaction2.setTransactionDate(LocalDateTime.parse("2019-04-04T17:33:26.158"));
+//        transaction2.setType(TransactionType.Debit);
+//        transaction2.setStatus(TransactionStatus.In_Progress);
+//        transaction2.setAmount(10.0);
+
+        String expected = "<report><ID>1</ID></report>";/*ransaction Date\":\"2019-04-04T17:30:49.189\"," +
+                "\"Transaction Type\":\"Credit\",\"Transaction Status:\"In_Progress\",\"" +
+                "Transaction Amount:\"108.0\"},{\"ID\":\"2\",\"Transaction Date\":\"2019-0" +
+                "4-04T17:33:26.158\",\"Transaction Type\":\"Debit\",\"Transaction Status:\"" +
+                "In_Progress\",\"Transaction Amount:\"10.0\"}}";*/
+        List<Transaction> transactions = new ArrayList<>();
+        transactions.add(transaction1);
+        //transactions.add(transaction2);
+
+        Assert.assertEquals("Representation Should Matched", expected, new TransactionController().toStringForReportXML(transactions));
 
     }
 

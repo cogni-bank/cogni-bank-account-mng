@@ -25,13 +25,13 @@ public class Account implements Serializable {
 
     private String status = "ACTIVE";
 
-    @OneToMany(
+   /* @OneToMany(
             mappedBy = "account",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
-    private List<Transaction> transactions;
+    private List<Transaction> transactions;*/
 
     private double balance;
 
@@ -90,13 +90,13 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public List<Transaction> getTransactions() {
+    /*public List<Transaction> getTransactions() {
         return transactions;
     }
 
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
-    }
+    }*/
 
     public void setAccountNumber(long accountNumber) {
         this.accountNumber = accountNumber;

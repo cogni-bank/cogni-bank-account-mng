@@ -6,8 +6,10 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Transactio
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.AccountRepository;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -41,7 +43,16 @@ public class TransactionController {
     public String report(@PathVariable long accountNumber, @PathVariable String startDate, @PathVariable String endDate) {
         return toStringForReport(transactionService.report(accountNumber, LocalDate.parse(startDate), LocalDate.parse(endDate)));
     }
+    //xml report
 
+    @PutMapping(value={"reportXML/{accountNumber}/{startDate}/{endDate}"},
+            produces = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})
+    public List<Transaction> reportXML(@PathVariable long accountNumber, @PathVariable String startDate, @PathVariable String endDate, HttpServletResponse response) {
+        response.setHeader("Content type ","xml");
+        return transactionService.report(accountNumber, LocalDate.parse(startDate), LocalDate.parse(endDate));
+    }
+
+    //Json imitation
     public String toStringForReport(List<Transaction> transactionList) {
         final StringBuilder result = new StringBuilder();
         transactionList.stream().forEach(tran -> {
@@ -56,6 +67,17 @@ public class TransactionController {
             return "{" + result.replace(result.length() - 1, result.length(), "}");
         else
             return "{}";
+    }
+
+    public String toStringForReportXML(List<Transaction> transactionList) {
+        final StringBuilder result = new StringBuilder();
+        transactionList.stream().forEach(tran -> {
+            result.append(
+                    "<ID>"+tran.getId()+"</ID>"
+                    );
+        });
+        return "<report>"+result.toString()+"</report>";
+
     }
 
 

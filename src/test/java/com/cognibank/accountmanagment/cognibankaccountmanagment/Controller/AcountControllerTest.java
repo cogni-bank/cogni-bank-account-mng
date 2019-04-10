@@ -1,6 +1,6 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Controller;
 
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.AccountService;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.TransactionService;
@@ -57,7 +57,7 @@ public class AcountControllerTest {
 
     @Test
     public void createAccountControllerTest() throws Exception {
-        List<Account> list = new ArrayList<>();
+        List<Account> list = new ArrayList<Account>();
         Account account = new Account()
                 .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
                 .withAccountNumber(78l)
