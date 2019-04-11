@@ -38,8 +38,9 @@ public class TransactionController {
         transactionService.withdraw(amount, account);
         return account.getUserId();
     }
-    long getAccountNumberById(String accountId){
-        return accountRepository.findById(accountId).get().getAccountNumber();
+    @PutMapping("getAccountNumberById/{accountId}")
+    String getAccountNumberById(@PathVariable  String accountId){
+        return accountRepository.findById(accountId).get().getAccountNumber()+"";
     }
     //@PutMapping("report/{accountNumber}/{startDate}/{endDate}")
     @PutMapping(value = {"report/{accountId}/{startDate}/{endDate}"}, produces = {MediaType.APPLICATION_JSON_VALUE})

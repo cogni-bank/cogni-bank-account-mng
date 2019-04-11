@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
@@ -92,7 +93,29 @@ public class TransactionControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(account.getUserId()));
     }
+    @Test
+    public void getAccountByUserIdTest() throws Exception {
 
+        Transaction newTransaction = new Transaction();
+
+        List<Account> list = new ArrayList<>();
+        Optional<Account> account = Optional.of(new Account()
+                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
+                .withUserId("12")
+                .withAccountNumber(78l)
+                .withBalance(0l)
+                .withAccountType(AccountType.Checking));
+
+        Mockito.when(accountRepository.findById(Mockito.anyString())).thenReturn(account);
+
+        mvc.perform(MockMvcRequestBuilders
+                .put("/api/v1/accounts/getAccountNumberById/{accountId}", 78l)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(account.get().getAccountNumber()+""));
+    }
     @Test
     public void withdrawToUserAccountTest() throws Exception {
 
