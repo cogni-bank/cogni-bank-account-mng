@@ -69,7 +69,7 @@ public class AcountControllerTest {
                 .thenReturn(account);
 
         mvc.perform(MockMvcRequestBuilders
-                .put("/api/v1/accounts/create/{id}/{accountType}", 12, AccountType.Checking)
+                .put("/users/accounts/create/{id}/{accountType}", 12, AccountType.Checking)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -93,7 +93,7 @@ public class AcountControllerTest {
                 .thenReturn(account.getStatus());
 
         mvc.perform(MockMvcRequestBuilders
-                .put("/api/v1/accounts/update/{accountNumber}/{status}", 78l, "FREEZE")
+                .put("/users/accounts/update/{accountNumber}/{status}", 78l, "FREEZE")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
