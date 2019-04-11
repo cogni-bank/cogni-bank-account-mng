@@ -3,6 +3,7 @@ package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBalanceException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.AccountRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -34,7 +35,8 @@ public class TransactionServiceTest {
     @Autowired
     private AccountService accountService;
 
-
+    @Autowired
+    private AccountRepository accountRepository;
     @Before
     public void init() {
 
@@ -133,7 +135,6 @@ public class TransactionServiceTest {
 
     @Test
     @Transactional
-    @Ignore
     public void reportTest() {
 //        final String userId = "ABCD1234";
 
@@ -141,9 +142,10 @@ public class TransactionServiceTest {
                 .withBalance(0L)
                 .withAccountNumber(78L)
                 .withUserId("ABCD1234")
-                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
+              //  .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
                 .withAccountType(AccountType.Checking);
-        account = accountService.createAccount(account);
+        accountService.createAccount(account);
+        account=accountRepository.findByUserId("ABCD1234").get().get(0);
         // Transaction transaction=new Transaction();
         LocalDate startDate=LocalDate.now().minusDays(1l);
         LocalDate endDate=LocalDate.now().plusDays(1l);
@@ -154,7 +156,7 @@ public class TransactionServiceTest {
         transactionService.deposit(56,account);
         transactionService.deposit(56,account);
 
-        List<Transaction> transactions=transactionService.report("0e4c1211-2c58-4956-b523-ed0d64dc54c4",startDate, endDate);
+        List<Transaction> transactions=transactionService.report(account.getId(),startDate, endDate);
         Assert.assertEquals("Number of transaction should be", 5, transactions.size());
         assertEquals("Account must be the same", account, transactions.get(0).getAccount());
     }
