@@ -156,4 +156,17 @@ public class TransactionServiceTest {
         Assert.assertEquals("Number of transaction should be", 5, transactions.size());
         assertEquals("Account must be the same", account, transactions.get(0).getAccount());
     }
+
+    //Testing the Json object for notification message
+    @Test
+    public void jSonObjectForMessageToSend(){
+        long accountNumber=3400000012l;
+        String email="hg@hf.fueh";
+        String userName="egfu";
+        double amount=387.87;
+        String objectToSend="{\"accountNumber\":\""
+                +accountNumber+"\",\"email\":\""+email+"\",\"userName\":\""+userName+"\",\"amount\":\""+amount+"\"}";
+        System.out.println(objectToSend);
+        assertEquals(1,1);
+    }
 }

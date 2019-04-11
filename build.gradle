@@ -24,6 +24,7 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '2.0.1.RELEASE'
+	compile group: 'org.json', name: 'json', version: '20180813'
 	//compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc'
 	//compile group: 'mysql', name: 'mysql-connector-java'
 	

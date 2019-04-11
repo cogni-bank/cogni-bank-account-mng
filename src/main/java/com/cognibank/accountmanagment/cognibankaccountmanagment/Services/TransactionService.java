@@ -5,9 +5,12 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBa
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.AccountRepository;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.TransactionRepository;
+import org.json.JSONObject;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,6 +28,8 @@ public class TransactionService {
 
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     public List<Transaction> getTransactionsByCustomerId(String id) {
         return transactionRepository.findTransactionsByCustomerId(id);
@@ -69,6 +74,13 @@ public class TransactionService {
         }
     }
 
+    public void sendMessage(long accountNumber, String email, String userName, double amount){
+        String objectToSend="{\"accountNumber\":\""
+                +accountNumber+"\",\"email\":\""+email+"\",\"userName\":\""+userName+"\",\"amount\":\""+amount+"\"}";
+        //System.out.println(""objectToSend);
+        JSONObject jsonObj = new JSONObject(objectToSend);
+        rabbitTemplate.convertAndSend("LOWERBALANCE_EXCHANGE","LOWBALANCE_KEY",jsonObj.toString());
+    }
     public double withdraw(double amount, Account account) throws LowBalanceException{
         if (account.getStatus().equals("ACTIVE")) {
             Transaction transaction = new Transaction()
@@ -83,7 +95,7 @@ public class TransactionService {
             accountRepository.save(account);
             if( currentBalance < 25.0){
                 //throw new LowBalanceException("Low balance: $"+currentBalance);
-
+                sendMessage(account.getAccountNumber(),"kana@gmail.com","kana",account.getBalance());
                 //send the message to the queue to notify the client by email or phone
             }
             return currentBalance;

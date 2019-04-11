@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/accounts/")
+@RequestMapping("/users/accounts/")
 public class TransactionController {
 
     @Autowired

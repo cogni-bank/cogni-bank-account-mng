@@ -3,17 +3,25 @@ package com.cognibank.accountmanagment.cognibankaccountmanagment.Controller;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountType;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.AccountService;
+import org.json.JSONObject;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
 
 @RestController
-@RequestMapping("/api/v1/accounts/")
+@RequestMapping("/users/accounts/")
 public class AccountController {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     /**
      * Creating an account for a user.
@@ -51,4 +59,15 @@ public class AccountController {
 
     }
 
+    // just a test for RabbitMQ to be deleted
+    @GetMapping("/rabbitmq/send/{accountNumber}/{email}/{userName}/{amount}")
+    public String sendMessage(@PathVariable long accountNumber, @PathVariable String email, @PathVariable String userName, @PathVariable double amount){
+        String objectToSend="{\"accountNumber\":\""
+                +accountNumber+"\",\"email\":\""+email+"\",\"userName\":\""+userName+"\",\"amount\":\""+amount+"\"}";
+        //System.out.println(""objectToSend);
+        JSONObject jsonObj = new JSONObject(objectToSend);
+        rabbitTemplate.convertAndSend("LOWERBALANCE_EXCHANGE","LOWBALANCE_KEY",jsonObj.toString());
+        return jsonObj.toString();
+    }
+    //localhost:9300/users/accounts/rabbitmq/send/3400000023/kanasounnaw@gmail.com/kana/100
 }
