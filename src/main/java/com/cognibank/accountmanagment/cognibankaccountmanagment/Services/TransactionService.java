@@ -82,7 +82,7 @@ public class TransactionService {
             account.withBalance(currentBalance);
             accountRepository.save(account);
             if( currentBalance < 25.0){
-                throw new LowBalanceException("Low balance: $"+currentBalance);
+                //throw new LowBalanceException("Low balance: $"+currentBalance);
 
                 //send the message to the queue to notify the client by email or phone
             }
