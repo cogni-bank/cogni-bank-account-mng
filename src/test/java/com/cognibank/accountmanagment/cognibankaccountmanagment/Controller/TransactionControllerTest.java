@@ -286,7 +286,6 @@ public class TransactionControllerTest {
 
     //XML transformer
     @Test
-    @Ignore
     public void toStringForReportXMLTest() {
 
         Transaction transaction1 = new Transaction(), transaction2 = new Transaction();
@@ -297,20 +296,19 @@ public class TransactionControllerTest {
         transaction1.setStatus(TransactionStatus.In_Progress);
         transaction1.setAmount(108.0);
 
-//        transaction2.setId(2);
-//        transaction2.setTransactionDate(LocalDateTime.parse("2019-04-04T17:33:26.158"));
-//        transaction2.setType(TransactionType.Debit);
-//        transaction2.setStatus(TransactionStatus.In_Progress);
-//        transaction2.setAmount(10.0);
+        transaction2.setId(2);
+        transaction2.setTransactionDate(LocalDateTime.parse("2019-04-04T17:33:26.158"));
+        transaction2.setType(TransactionType.Debit);
+        transaction2.setStatus(TransactionStatus.In_Progress);
+        transaction2.setAmount(10.0);
 
-        String expected = "<report><ID>1</ID></report>";/*ransaction Date\":\"2019-04-04T17:30:49.189\"," +
-                "\"Transaction Type\":\"Credit\",\"Transaction Status:\"In_Progress\",\"" +
-                "Transaction Amount:\"108.0\"},{\"ID\":\"2\",\"Transaction Date\":\"2019-0" +
-                "4-04T17:33:26.158\",\"Transaction Type\":\"Debit\",\"Transaction Status:\"" +
-                "In_Progress\",\"Transaction Amount:\"10.0\"}}";*/
+        String expected = "<List><ID>1</ID><TransactionDate>2019-04-04T17:30:49.189</TransactionDate>" +
+                "<TransactionStatus>In_Progress</TransactionStatus><TransactionAmount>108.0</TransactionAmount>" +
+                "<ID>2</ID><TransactionDate>2019-04-04T17:33:26.158</TransactionDate>" +
+                "<TransactionStatus>In_Progress</TransactionStatus><TransactionAmount>10.0</TransactionAmount></List>";
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(transaction1);
-        //transactions.add(transaction2);
+        transactions.add(transaction2);
 
         Assert.assertEquals("Representation Should Matched", expected, new TransactionController().toStringForReportXML(transactions));
 

@@ -85,6 +85,9 @@ public class TransactionController {
         transactionList.stream().forEach(tran -> {
             result.append(
                     "<ID>"+tran.getId()+"</ID>"
+                    +"<TransactionDate>"+tran.getTransactionDate()+"</TransactionDate>"
+                            +"<TransactionStatus>"+tran.getStatus().name()+"</TransactionStatus>"
+                            +"<TransactionAmount>"+tran.getAmount()+"</TransactionAmount>"
                     );
         });
         return "<List>"+result.toString()+"</List>";

@@ -60,6 +60,7 @@ public class AccountController {
     }
 
     // just a test for RabbitMQ to be deleted
+    //localhost:9300/users/accounts/rabbitmq/send/3400000023/kanasounna@gmail.com/kana/100
     @GetMapping("/rabbitmq/send/{accountNumber}/{email}/{userName}/{amount}")
     public String sendMessage(@PathVariable long accountNumber, @PathVariable String email, @PathVariable String userName, @PathVariable double amount){
         String objectToSend="{\"accountNumber\":\""

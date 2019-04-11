@@ -3,12 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="66d11af1-cd6b-4309-b9b9-3a47bbd0acc1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/TransactionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/TransactionService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/TransactionServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/TransactionServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AcountControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AcountControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AcountControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AcountControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/TransactionServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/TransactionServiceTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -53,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-682">
-              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            <state relative-caret-position="368">
+              <caret line="88" column="31" lean-forward="true" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -97,8 +96,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AccountController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="68" selection-end-column="99" />
+            <state relative-caret-position="308">
+              <caret line="62" column="71" selection-start-line="62" selection-start-column="71" selection-end-line="62" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Model/Transaction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-256">
+              <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+              <folding>
+                <element signature="e#2118#2119#0" expanded="true" />
+                <element signature="e#2156#2157#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -106,8 +118,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="224" column="45" selection-start-line="224" selection-start-column="45" selection-end-line="224" selection-end-column="45" />
+            <state relative-caret-position="457">
+              <caret line="306" column="26" selection-start-line="306" selection-start-column="26" selection-end-line="306" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -145,14 +157,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Model/Account.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/CogniBankAccountManagmentApplication.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/RabbitMQService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/bean.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AccountController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/TransactionService.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/TransactionServiceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AcountControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AccountController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionControllerTest.java" />
       </list>
     </option>
@@ -362,7 +374,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555012152512" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555018451035" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -376,7 +388,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in com.cognibank.accountmanagment.cogni-bank-account-managment.test (2)">
+  <component name="RunManager" selected="JUnit.TransactionControllerTest.toStringForReportXMLTest">
     <configuration name="All in com.cognibank.accountmanagment.cogni-bank-account-managment.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="com.cognibank.accountmanagment.cogni-bank-account-managment.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -393,7 +405,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in com.cognibank.accountmanagment.cogni-bank-account-managment.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in com.cognibank.accountmanagment.cogni-bank-account-managment.test (3)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="com.cognibank.accountmanagment.cogni-bank-account-managment.test" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
@@ -417,7 +429,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TransactionControllerTest.toStringForReportTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TransactionControllerTest.toStringForReportXMLTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="com.cognibank.accountmanagment.cogni-bank-account-managment.test" />
       <extension name="coverage">
         <pattern>
@@ -427,7 +439,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller" />
       <option name="MAIN_CLASS_NAME" value="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" />
-      <option name="METHOD_NAME" value="toStringForReportTest" />
+      <option name="METHOD_NAME" value="toStringForReportXMLTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -435,11 +447,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TransactionControllerTest.toStringForReportXMLTest" />
+        <item itemvalue="JUnit.All in com.cognibank.accountmanagment.cogni-bank-account-managment.test (3)" />
         <item itemvalue="JUnit.All in com.cognibank.accountmanagment.cogni-bank-account-managment.test (2)" />
         <item itemvalue="JUnit.TransactionControllerTest.reportTest" />
         <item itemvalue="JUnit.All in com.cognibank.accountmanagment.cogni-bank-account-managment.test (1)" />
-        <item itemvalue="JUnit.TransactionControllerTest.toStringForReportTest" />
-        <item itemvalue="JUnit.All in com.cognibank.accountmanagment.cogni-bank-account-managment.test" />
       </list>
     </recent_temporary>
   </component>
@@ -482,39 +494,46 @@
       <option name="project" value="LOCAL" />
       <updated>1555010327524</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Ajustment of Mapping URL in unit test">
+      <created>1555012217147</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1555012217147</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CogniBankAccountManagmentApplicationTests - 2019.04.11 at 15h 06m 28s.xml">
-      <configuration name="CogniBankAccountManagmentApplicationTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_com_cognibank_accountmanagment_cogni-bank-account-managment_test_(2) - 2019.04.11 at 15h 31m 02s.xml">
-      <configuration name="All in com.cognibank.accountmanagment.cogni-bank-account-managment.test (2)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TransactionServiceTest_reportTest - 2019.04.11 at 15h 34m 18s.xml">
-      <configuration name="TransactionServiceTest.reportTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_com_cognibank_accountmanagment_cogni-bank-account-managment_test - 2019.04.11 at 15h 36m 37s.xml">
-      <configuration name="All in com.cognibank.accountmanagment.cogni-bank-account-managment.test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest_toStringForReportTest - 2019.04.11 at 15h 39m 43s.xml">
-      <configuration name="TransactionControllerTest.toStringForReportTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest_toStringForReportTest - 2019.04.11 at 15h 40m 26s.xml">
-      <configuration name="TransactionControllerTest.toStringForReportTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest_toStringForReportTest - 2019.04.11 at 15h 41m 43s.xml">
-      <configuration name="TransactionControllerTest.toStringForReportTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest_toStringForReportTest - 2019.04.11 at 15h 42m 29s.xml">
-      <configuration name="TransactionControllerTest.toStringForReportTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_com_cognibank_accountmanagment_cogni-bank-account-managment_test_(1) - 2019.04.11 at 15h 43m 04s.xml">
-      <configuration name="All in com.cognibank.accountmanagment.cogni-bank-account-managment.test (1)" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TransactionControllerTest_reportTest - 2019.04.11 at 15h 45m 35s.xml">
       <configuration name="TransactionControllerTest.reportTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest_reportTest - 2019.04.11 at 15h 46m 39s.xml">
+      <configuration name="TransactionControllerTest.reportTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest_reportTest - 2019.04.11 at 15h 47m 51s.xml">
+      <configuration name="TransactionControllerTest.reportTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_com_cognibank_accountmanagment_cogni-bank-account-managment_test_(2) - 2019.04.11 at 15h 49m 32s.xml">
+      <configuration name="All in com.cognibank.accountmanagment.cogni-bank-account-managment.test (2)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_com_cognibank_accountmanagment_cogni-bank-account-managment_test_(3) - 2019.04.11 at 17h 25m 43s.xml">
+      <configuration name="All in com.cognibank.accountmanagment.cogni-bank-account-managment.test (3)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest_toStringForReportXMLTest - 2019.04.11 at 17h 26m 15s.xml">
+      <configuration name="TransactionControllerTest.toStringForReportXMLTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest_toStringForReportXMLTest - 2019.04.11 at 17h 26m 28s.xml">
+      <configuration name="TransactionControllerTest.toStringForReportXMLTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest_toStringForReportXMLTest - 2019.04.11 at 17h 27m 07s.xml">
+      <configuration name="TransactionControllerTest.toStringForReportXMLTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest_toStringForReportXMLTest - 2019.04.11 at 17h 27m 31s.xml">
+      <configuration name="TransactionControllerTest.toStringForReportXMLTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest_toStringForReportXMLTest - 2019.04.11 at 17h 31m 40s.xml">
+      <configuration name="TransactionControllerTest.toStringForReportXMLTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -557,7 +576,8 @@
     <MESSAGE value="Filter the json response to send just needed data to the UI" />
     <MESSAGE value="Get Account Number By User Id Test" />
     <MESSAGE value="Implementation of notification for balance below 25" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementation of notification for balance below 25" />
+    <MESSAGE value="Ajustment of Mapping URL in unit test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustment of Mapping URL in unit test" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Exceptions/UserAccountNotFoundException.java">
@@ -648,17 +668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Model/Transaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-          <folding>
-            <element signature="e#2118#2119#0" expanded="true" />
-            <element signature="e#2156#2157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Model/Account.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -705,13 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-682">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Services/RabbitMQService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -719,13 +721,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AccountController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="68" selection-end-column="99" />
         </state>
       </provider>
     </entry>
@@ -757,10 +752,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/AccountController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="62" column="71" selection-start-line="62" selection-start-column="71" selection-end-line="62" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Model/Transaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-256">
+          <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+          <folding>
+            <element signature="e#2118#2119#0" expanded="true" />
+            <element signature="e#2156#2157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="88" column="31" lean-forward="true" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/cognibank/accountmanagment/cognibankaccountmanagment/Controller/TransactionControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="224" column="45" selection-start-line="224" selection-start-column="45" selection-end-line="224" selection-end-column="45" />
+        <state relative-caret-position="457">
+          <caret line="306" column="26" selection-start-line="306" selection-start-column="26" selection-end-line="306" selection-end-column="26" />
         </state>
       </provider>
     </entry>
