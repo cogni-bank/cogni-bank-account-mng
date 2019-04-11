@@ -38,37 +38,47 @@ public class TransactionController {
         transactionService.withdraw(amount, account);
         return account.getUserId();
     }
-
-    @PutMapping("report/{accountNumber}/{startDate}/{endDate}")
-    public String report(@PathVariable long accountNumber, @PathVariable String startDate, @PathVariable String endDate) {
-        return toStringForReport(transactionService.report(accountNumber, LocalDate.parse(startDate), LocalDate.parse(endDate)));
+    long getAccountNumberById(String accountId){
+        return accountRepository.findById(accountId).get().getAccountNumber();
     }
+    //@PutMapping("report/{accountNumber}/{startDate}/{endDate}")
+    @PutMapping(value = {"report/{accountId}/{startDate}/{endDate}"}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String report(@PathVariable String accountId, @PathVariable String startDate, @PathVariable String endDate) {
+        //long accountNumber=getAccountNumberById(accountId);
+       // System.out.println(accountNumber +" inside report");
+        List<Transaction> transactions=transactionService.report(accountId, LocalDate.parse(startDate), LocalDate.parse(endDate));
+        return toStringForReport(transactions);
+    }
+//    @PutMapping("report/{accountId}/{startDate}/{endDate}")
+//    public List<Transaction> report(@PathVariable long accountNumber, @PathVariable String startDate, @PathVariable String endDate) {
+//        return transactionService.report(accountNumber, LocalDate.parse(startDate), LocalDate.parse(endDate));
+//    }
     //xml report
-
-    @PutMapping(value={"reportXML/{accountNumber}/{startDate}/{endDate}"},
+    @PutMapping(value={"reportXML/{accountId}/{startDate}/{endDate}"},
             produces = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})
-    public List<Transaction> reportXML(@PathVariable long accountNumber, @PathVariable String startDate, @PathVariable String endDate, HttpServletResponse response) {
+    public List<Transaction> reportXML(@PathVariable String accountId, @PathVariable String startDate, @PathVariable String endDate, HttpServletResponse response) {
         response.setHeader("Content type ","xml");
-        return transactionService.report(accountNumber, LocalDate.parse(startDate), LocalDate.parse(endDate));
+        return transactionService.report(accountId, LocalDate.parse(startDate), LocalDate.parse(endDate));
     }
 
     //Json imitation
     public String toStringForReport(List<Transaction> transactionList) {
         final StringBuilder result = new StringBuilder();
-        transactionList.stream().forEach(tran -> {
+        if(transactionList==null) return "[]";
+            transactionList.stream().forEach(tran -> {
             result.append(
                     "{\"ID\":\"" + tran.getId() + "\"," +
-                            "\"Transaction Date\":\"" + tran.getTransactionDate() + "\"," +
-                            "\"Transaction Type\":\"" + tran.getType() + "\"," +
-                            "\"Transaction Status:\"" + tran.getStatus() + "\"," +
-                            "\"Transaction Amount:\"" + tran.getAmount() + "\"},");
+                            "\"TransactionDate\":\"" + tran.getTransactionDate() + "\"," +
+                            "\"TransactionType\":\"" + tran.getType() + "\"," +
+                            "\"TransactionStatus\":\"" + tran.getStatus() + "\"," +
+                            "\"TransactionAmount\":\"" + tran.getAmount() + "\"},");
         });
-        if (result.length() != 0)
-            return "{" + result.replace(result.length() - 1, result.length(), "}");
-        else
-            return "{}";
-    }
 
+            return "[" + result.replace(result.length() - 1, result.length(), "]");
+
+
+    }
+// xml report transformer
     public String toStringForReportXML(List<Transaction> transactionList) {
         final StringBuilder result = new StringBuilder();
         transactionList.stream().forEach(tran -> {
@@ -76,7 +86,7 @@ public class TransactionController {
                     "<ID>"+tran.getId()+"</ID>"
                     );
         });
-        return "<report>"+result.toString()+"</report>";
+        return "<List>"+result.toString()+"</List>";
 
     }
 

@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -20,18 +21,19 @@ public class Account implements Serializable {
     @Column(unique = true)
     private long accountNumber;
 
+    @NotNull(message = "Account Type cannot be null")
     @Column(nullable = false)
     private AccountType accountType;
 
     private String status = "ACTIVE";
 
-   /* @OneToMany(
-            mappedBy = "account",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.LAZY
-    )
-    private List<Transaction> transactions;*/
+//  @OneToMany(
+//            mappedBy = "account",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true,
+//            fetch = FetchType.LAZY
+//    )
+//    private List<Transaction> transactions;
 
     private double balance;
 

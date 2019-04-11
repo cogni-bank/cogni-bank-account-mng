@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -92,16 +93,41 @@ public class TransactionService {
 
         }
     }
-//@Transactional
-    public List<Transaction> report(long accountNumber, LocalDate startDate, LocalDate endDate) {
-        final Account account = accountService.getAccountByAccountNumber(accountNumber);
+////@Transactional
+//    public List<Transaction> report(String accountId, LocalDate startDate, LocalDate endDate) {
+//       // final Account account = accountService.getAccountByAccountNumber(accountNumber);
+//
+//        List<Transaction> allTransaction = transactionRepository.findByAccountId(accountId).get();
+//        if(allTransaction!=null){
+//            return allTransaction
+//                .stream()
+//                .filter(dateReport -> (dateReport.getTransactionDate().isBefore(manageDate(endDate)) && dateReport.getTransactionDate().isAfter(manageDate(startDate))))
+//                .collect(Collectors.toList());
+//
+//        }
+//
+//        return null;
+//    }
 
-        List<Transaction> allTransaction = transactionRepository.findByAccountId(account.getId())
-                .orElseThrow(AccountNotFoundException::new)
-                .stream()
-                .filter(dateReport -> (dateReport.getTransactionDate().isBefore(manageDate(endDate)) && dateReport.getTransactionDate().isAfter(manageDate(startDate))))
-                .collect(Collectors.toList());
-        return allTransaction;
+    //@Transactional
+    public List<Transaction> report(String accountId, LocalDate startDate, LocalDate endDate) {
+        // final Account account = accountService.getAccountByAccountNumber(accountNumber);
+
+        System.out.println("accountId --> "+accountId);
+
+        Optional<List<Transaction>> allTransaction = transactionRepository.findByAccountId(accountId);
+        System.out.println("allTransaction --> "+allTransaction);
+
+        if(allTransaction.isPresent()){
+            return allTransaction.get()
+                    .stream()
+                    .filter(dateReport -> (dateReport.getTransactionDate().isBefore(manageDate(endDate)) && dateReport.getTransactionDate().isAfter(manageDate(startDate))))
+                    .collect(Collectors.toList());
+
+        }
+
+
+        return null;
     }
 
     public LocalDateTime manageDate(LocalDate localDate){

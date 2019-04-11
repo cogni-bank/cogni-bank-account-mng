@@ -16,11 +16,11 @@ public class CogniBankAccountManagmentApplication {
 	@Autowired
 	ConnectionFactory connectionFactory;
 
-	@Bean
+	/*@Bean
 	public void createQueue(){
 		rabbitMQService.binding(rabbitMQService.queue(),rabbitMQService.exchange());
 		rabbitMQService.container(connectionFactory);
-	}
+	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(CogniBankAccountManagmentApplication.class, args);

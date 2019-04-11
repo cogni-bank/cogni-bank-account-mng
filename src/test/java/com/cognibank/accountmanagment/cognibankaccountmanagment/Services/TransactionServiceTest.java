@@ -139,6 +139,7 @@ public class TransactionServiceTest {
                 .withBalance(0L)
                 .withAccountNumber(78L)
                 .withUserId("ABCD1234")
+                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
                 .withAccountType(AccountType.Checking);
         account = accountService.createAccount(account);
         // Transaction transaction=new Transaction();
@@ -151,7 +152,7 @@ public class TransactionServiceTest {
         transactionService.deposit(56,account);
         transactionService.deposit(56,account);
 
-        List<Transaction> transactions=transactionService.report(78L,startDate, endDate);
+        List<Transaction> transactions=transactionService.report("0e4c1211-2c58-4956-b523-ed0d64dc54c4",startDate, endDate);
         Assert.assertEquals("Number of transaction should be", 5, transactions.size());
         assertEquals("Account must be the same", account, transactions.get(0).getAccount());
     }

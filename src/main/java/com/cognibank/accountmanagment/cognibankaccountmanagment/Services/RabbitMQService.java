@@ -1,6 +1,7 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
+@Configuration
 public class RabbitMQService {
 
     @Autowired
