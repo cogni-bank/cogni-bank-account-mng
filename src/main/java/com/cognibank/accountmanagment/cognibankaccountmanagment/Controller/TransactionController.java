@@ -65,7 +65,8 @@ public class TransactionController {
     //Json imitation
     public String toStringForReport(List<Transaction> transactionList) {
         final StringBuilder result = new StringBuilder();
-        if(transactionList==null) return "[]";
+        if(transactionList==null ) return "[]";
+        if(transactionList.isEmpty()) return "[]";
             transactionList.stream().forEach(tran -> {
             result.append(
                     "{\"ID\":\"" + tran.getId() + "\"," +

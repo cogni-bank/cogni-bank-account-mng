@@ -201,7 +201,6 @@ public class TransactionControllerTest {
     }
 
     @Test
-    @Ignore
     public void reportTest() throws Exception {
 
         List<Account> list = new ArrayList<>();
@@ -223,7 +222,7 @@ public class TransactionControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(""));
+                .andExpect(content().string("[]"));
 
     }
 
