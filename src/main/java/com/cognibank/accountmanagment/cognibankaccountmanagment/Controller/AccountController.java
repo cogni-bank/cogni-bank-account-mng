@@ -28,7 +28,7 @@ public class AccountController {
      *
      * @param accountType Account type
      * @param userId          User ID
-     * @return returning account id to the client
+     * @return returning account id to the client ok ok
      */
     @PutMapping("create/{userId}/{accountType}")
     public String create(@PathVariable String userId, @PathVariable AccountType accountType) {

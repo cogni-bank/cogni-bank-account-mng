@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" tests="9" skipped="2" failures="0" errors="0" timestamp="2019-04-11T19:58:08" hostname="MACPCUS82350" time="0.172">
+  <properties/>
+  <testcase name="toStringForReportTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.022"/>
+  <testcase name="getAccountByUserIdTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.053"/>
+  <testcase name="toStringForReportXMLTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="withdrawToUserAccountTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.02"/>
+  <testcase name="depositToUserAccountTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.012"/>
+  <testcase name="withdrawToUserXMLAccountTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.012"/>
+  <testcase name="reportXmlTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.033"/>
+  <testcase name="accountBalanceExceptionTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.017"/>
+  <testcase name="reportTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[2019-04-11 15:58:08.500  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-11 15:58:08.500  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-11 15:58:08.500  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2019-04-11 15:58:08.512  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-11 15:58:08.512  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-11 15:58:08.512  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /users/accounts/getAccountNumberById/78
+       Parameters = {}
+          Headers = [Content-Type:"application/json", Accept:"application/json"]
+             Body = <no character encoding set>
+    Session Attrs = {}
+
+Handler:
+             Type = com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController
+           Method = java.lang.String com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController.getAccountNumberById(java.lang.String)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json;charset=ISO-8859-1", Content-Length:"2"]
+     Content type = application/json;charset=ISO-8859-1
+             Body = 78
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2019-04-11 15:58:08.566  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-11 15:58:08.566  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-11 15:58:08.566  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /users/accounts/withdraw/78/20.0
+       Parameters = {}
+          Headers = [Content-Type:"application/json", Accept:"application/json"]
+             Body = <no character encoding set>
+    Session Attrs = {}
+
+Handler:
+             Type = com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController
+           Method = public java.lang.String com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController.withdraw(long,double)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Disposition:"inline;filename=f.txt", Content-Type:"application/json;charset=ISO-8859-1", Content-Length:"2"]
+     Content type = application/json;charset=ISO-8859-1
+             Body = 12
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2019-04-11 15:58:08.586  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-11 15:58:08.586  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-11 15:58:08.586  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /users/accounts/deposit/78/20.0
+       Parameters = {}
+          Headers = [Content-Type:"application/json", Accept:"application/json"]
+             Body = <no character encoding set>
+    Session Attrs = {}
+
+Handler:
+             Type = com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController
+           Method = public java.lang.String com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController.deposit(long,double)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Disposition:"inline;filename=f.txt", Content-Type:"application/json;charset=ISO-8859-1", Content-Length:"2"]
+     Content type = application/json;charset=ISO-8859-1
+             Body = 12
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2019-04-11 15:58:08.599  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-11 15:58:08.599  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-11 15:58:08.599  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /users/accounts/withdraw/78/20.0
+       Parameters = {}
+          Headers = [Content-Type:"application/xml", Accept:"application/xml"]
+             Body = <no character encoding set>
+    Session Attrs = {}
+
+Handler:
+             Type = com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController
+           Method = public java.lang.String com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController.withdraw(long,double)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Disposition:"inline;filename=f.txt", Content-Type:"application/xml;charset=ISO-8859-1", Content-Length:"2"]
+     Content type = application/xml;charset=ISO-8859-1
+             Body = 12
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2019-04-11 15:58:08.612  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-11 15:58:08.612  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-11 15:58:08.612  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /users/accounts/reportXML/78/2019-04-10/2019-04-12
+       Parameters = {}
+          Headers = [Content-Type:"application/xml", Accept:"application/xml"]
+             Body = <no character encoding set>
+    Session Attrs = {}
+
+Handler:
+             Type = com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController
+           Method = public java.util.List<com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Transaction> com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController.reportXML(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpServletResponse)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content type :"xml", Content-Type:"application/xml;charset=UTF-8"]
+     Content type = application/xml;charset=UTF-8
+             Body = <List/>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2019-04-11 15:58:08.644  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-11 15:58:08.644  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-11 15:58:08.644  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /users/accounts/withdraw/78/20.0
+       Parameters = {}
+          Headers = [Content-Type:"application/json", Accept:"application/json"]
+             Body = <no character encoding set>
+    Session Attrs = {}
+
+Handler:
+             Type = com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController
+           Method = public java.lang.String com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController.withdraw(long,double)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBalanceException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 451
+    Error message = Account balance is too low.
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
