@@ -5,7 +5,6 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBa
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,7 +132,6 @@ public class TransactionServiceTest {
 
     @Test
     @Transactional
-    @Ignore
     public void reportTest() {
 //        final String userId = "ABCD1234";
 

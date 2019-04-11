@@ -94,11 +94,6 @@ public class TransactionService {
             account.withBalance(currentBalance);
             accountRepository.save(account);
             if( currentBalance < 25.0){
-
-                /*RestTemplate restTemplate = new RestTemplate();
-                ResponseEntity<Boolean> isUp = restTemplate
-                    .getForEntity("http://container2:2002/apis/test",Boolean.class)
-                 */
                 //throw new LowBalanceException("Low balance: $"+currentBalance);
                 sendMessage(account.getAccountNumber(),"kana@gmail.com","kana",account.getBalance());
                 //send the message to the queue to notify the client by email or phone
@@ -154,4 +149,3 @@ public class TransactionService {
 
 
 }
-
