@@ -1,5 +1,6 @@
 package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.AccountNotActiveException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBalanceException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.UserIdWrongException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.UserManagementServiceUnavailabeException;
@@ -16,8 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -80,6 +79,11 @@ public class TransactionService {
             return currentBalance;
         } else {
             //May be we should throw an exception here if the account is not active
+            try{
+                throw new AccountNotActiveException();
+            }catch(AccountNotActiveException e){
+                e.printStackTrace();
+            }
             return 0;
 
         }
@@ -90,7 +94,7 @@ public class TransactionService {
                 + accountNumber + "\",\"email\":\"" + email + "\",\"userName\":\"" + userName + "\",\"amount\":\"" + amount + "\"}";
         //System.out.println(""objectToSend);
         JSONObject jsonObj = new JSONObject(objectToSend);
-        rabbitTemplate.convertAndSend("LOWERBALANCE_EXCHANGE", "LOWBALANCE_KEY", jsonObj.toString());
+        rabbitTemplate.convertAndSend(env.getProperty("spring.rabbitmq.api.directExchangeName"), env.getProperty("spring.rabbitmq.api.routingKey.lowbalance"), jsonObj.toString());
     }
 
     public void sendMessageOverDraft(long accountNumber, String email, String userName, double amount) {
@@ -98,7 +102,7 @@ public class TransactionService {
                 + accountNumber + "\",\"email\":\"" + email + "\",\"userName\":\"" + userName + "\",\"amount\":\"" + amount + "\"}";
         //System.out.println(""objectToSend);
         JSONObject jsonObj = new JSONObject(objectToSend);
-        rabbitTemplate.convertAndSend("LOWERBALANCE_EXCHANGE", "OVERDRAFT_KEY", jsonObj.toString());
+        rabbitTemplate.convertAndSend(env.getProperty("spring.rabbitmq.api.directExchangeName"), env.getProperty("spring.rabbitmq.api.routingKey.overdraft"), jsonObj.toString());
     }
 
     public double withdraw(double amount, Account account) throws LowBalanceException {
@@ -121,7 +125,6 @@ public class TransactionService {
                 RestTemplate restTemplate = new RestTemplate();
                 try {
                     ResponseEntity<String> newUserDetails = restTemplate.getForEntity(uri, String.class);
-                    // Map<String, String> body = newUserDetails.getBody();
                     ObjectMapper objectMapper = new ObjectMapper();
                     Map<String, Object> map = objectMapper.readValue(newUserDetails.getBody(), new TypeReference<Map<String, Object>>() {
                     });
@@ -143,7 +146,6 @@ public class TransactionService {
                 RestTemplate restTemplate = new RestTemplate();
                 try {
                     ResponseEntity<String> newUserDetails = restTemplate.getForEntity(uri, String.class);
-                    // Map<String, String> body = newUserDetails.getBody();
                     ObjectMapper objectMapper = new ObjectMapper();
                     Map<String, Object> map = objectMapper.readValue(newUserDetails.getBody(), new TypeReference<Map<String, Object>>() {
                     });
@@ -161,6 +163,11 @@ public class TransactionService {
             return currentBalance;
         } else {
             //May be we should throw an exception here if the account is not active
+            try{
+                throw new AccountNotActiveException();
+            }catch(AccountNotActiveException e){
+                e.printStackTrace();
+            }
             return 0;
 
         }
