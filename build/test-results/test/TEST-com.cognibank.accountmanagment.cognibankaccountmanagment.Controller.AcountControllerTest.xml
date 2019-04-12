@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.AcountControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-04-11T19:58:08" hostname="MACPCUS82350" time="0.023">
+<testsuite name="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.AcountControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-04-12T13:55:47" hostname="MACPCUS82350" time="0.024">
   <properties/>
-  <testcase name="createAccountControllerTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.AcountControllerTest" time="0.011"/>
+  <testcase name="createAccountControllerTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.AcountControllerTest" time="0.012"/>
   <testcase name="updateAccountStatusControllerTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.AcountControllerTest" time="0.012"/>
-  <system-out><![CDATA[2019-04-11 15:58:08.675  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2019-04-11 15:58:08.675  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2019-04-11 15:58:08.675  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+  <system-out><![CDATA[2019-04-12 09:55:47.372  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.372  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.372  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
 
 MockHttpServletRequest:
       HTTP Method = PUT
@@ -43,9 +43,9 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2019-04-11 15:58:08.687  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2019-04-11 15:58:08.687  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2019-04-11 15:58:08.687  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2019-04-12 09:55:47.385  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.385  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.385  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
 
 MockHttpServletRequest:
       HTTP Method = PUT

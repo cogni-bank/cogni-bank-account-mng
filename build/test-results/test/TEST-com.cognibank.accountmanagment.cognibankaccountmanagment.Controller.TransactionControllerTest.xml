@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" tests="9" skipped="2" failures="0" errors="0" timestamp="2019-04-11T19:58:08" hostname="MACPCUS82350" time="0.172">
+<testsuite name="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2019-04-12T13:55:47" hostname="MACPCUS82350" time="0.194">
   <properties/>
   <testcase name="toStringForReportTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.022"/>
   <testcase name="getAccountByUserIdTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.053"/>
-  <testcase name="toStringForReportXMLTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.0">
-    <skipped/>
-  </testcase>
-  <testcase name="withdrawToUserAccountTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.02"/>
-  <testcase name="depositToUserAccountTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.012"/>
+  <testcase name="toStringForReportXMLTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.01"/>
+  <testcase name="withdrawToUserAccountTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.019"/>
+  <testcase name="depositToUserAccountTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.016"/>
   <testcase name="withdrawToUserXMLAccountTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.012"/>
-  <testcase name="reportXmlTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.033"/>
+  <testcase name="reportXmlTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.031"/>
   <testcase name="accountBalanceExceptionTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.017"/>
-  <testcase name="reportTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.0">
-    <skipped/>
-  </testcase>
-  <system-out><![CDATA[2019-04-11 15:58:08.500  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2019-04-11 15:58:08.500  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2019-04-11 15:58:08.500  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2019-04-11 15:58:08.512  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2019-04-11 15:58:08.512  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2019-04-11 15:58:08.512  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+  <testcase name="reportTest" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionControllerTest" time="0.011"/>
+  <system-out><![CDATA[2019-04-12 09:55:47.175  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.175  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.175  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2019-04-12 09:55:47.188  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.188  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.188  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
 
 MockHttpServletRequest:
       HTTP Method = PUT
@@ -57,9 +53,12 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2019-04-11 15:58:08.566  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2019-04-11 15:58:08.566  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2019-04-11 15:58:08.566  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2019-04-12 09:55:47.241  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.241  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.241  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2019-04-12 09:55:47.251  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.251  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.252  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
 
 MockHttpServletRequest:
       HTTP Method = PUT
@@ -97,9 +96,9 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2019-04-11 15:58:08.586  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2019-04-11 15:58:08.586  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2019-04-11 15:58:08.586  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2019-04-12 09:55:47.273  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.273  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.273  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
 
 MockHttpServletRequest:
       HTTP Method = PUT
@@ -137,9 +136,9 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2019-04-11 15:58:08.599  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2019-04-11 15:58:08.599  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2019-04-11 15:58:08.599  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2019-04-12 09:55:47.287  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.287  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.287  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
 
 MockHttpServletRequest:
       HTTP Method = PUT
@@ -177,13 +176,13 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2019-04-11 15:58:08.612  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2019-04-11 15:58:08.612  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2019-04-11 15:58:08.612  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2019-04-12 09:55:47.298  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.298  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.299  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
 
 MockHttpServletRequest:
       HTTP Method = PUT
-      Request URI = /users/accounts/reportXML/78/2019-04-10/2019-04-12
+      Request URI = /users/accounts/reportXML/78/2019-04-11/2019-04-13
        Parameters = {}
           Headers = [Content-Type:"application/xml", Accept:"application/xml"]
              Body = <no character encoding set>
@@ -217,9 +216,9 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2019-04-11 15:58:08.644  INFO 10132 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2019-04-11 15:58:08.644  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2019-04-11 15:58:08.644  INFO 10132 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2019-04-12 09:55:47.329  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.329  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.329  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
 
 MockHttpServletRequest:
       HTTP Method = PUT
@@ -254,6 +253,46 @@ MockHttpServletResponse:
           Headers = []
      Content type = null
              Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2019-04-12 09:55:47.346  INFO 11265 --- [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2019-04-12 09:55:47.346  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-04-12 09:55:47.346  INFO 11265 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /users/accounts/report/0e4c1211-2c58-4956-b523-ed0d64dc54c4/2019-04-11/2019-04-13
+       Parameters = {}
+          Headers = [Content-Type:"application/json", Accept:"application/json"]
+             Body = <no character encoding set>
+    Session Attrs = {}
+
+Handler:
+             Type = com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController
+           Method = public java.lang.String com.cognibank.accountmanagment.cognibankaccountmanagment.Controller.TransactionController.report(java.lang.String,java.lang.String,java.lang.String)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json;charset=ISO-8859-1", Content-Length:"2"]
+     Content type = application/json;charset=ISO-8859-1
+             Body = []
     Forwarded URL = null
    Redirected URL = null
           Cookies = []

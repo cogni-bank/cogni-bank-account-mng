@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.cognibank.accountmanagment.cognibankaccountmanagment.CogniBankAccountManagmentApplicationTests" tests="1" skipped="1" failures="0" errors="0" timestamp="2019-04-11T19:58:00" hostname="MACPCUS82350" time="0.0">
-  <properties/>
-  <testcase name="initializationError" classname="com.cognibank.accountmanagment.cognibankaccountmanagment.CogniBankAccountManagmentApplicationTests" time="0.0">
-    <skipped/>
-  </testcase>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
