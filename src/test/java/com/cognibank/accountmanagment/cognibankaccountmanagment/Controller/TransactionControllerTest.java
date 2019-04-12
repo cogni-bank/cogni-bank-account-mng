@@ -93,12 +93,13 @@ public class TransactionControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(account.getUserId()));
     }
+
     @Test
     public void getAccountByUserIdTest() throws Exception {
 
         Transaction newTransaction = new Transaction();
 
-       // List<Account> list = new ArrayList<>();
+        // List<Account> list = new ArrayList<>();
         Optional<Account> account = Optional.of(new Account()
                 .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
                 .withUserId("12")
@@ -114,8 +115,9 @@ public class TransactionControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(account.get().getAccountNumber()+""));
+                .andExpect(content().string(account.get().getAccountNumber() + ""));
     }
+
     @Test
     public void withdrawToUserAccountTest() throws Exception {
 
@@ -166,18 +168,18 @@ public class TransactionControllerTest {
         newTransaction.setAmount(50.0);
 
 
-
-        Mockito.when(transactionService.transfer(Mockito.any(Long.class), Mockito.any(Long.class),Mockito.anyDouble()))
+        Mockito.when(transactionService.transfer(Mockito.any(Long.class), Mockito.any(Long.class), Mockito.anyDouble()))
                 .thenReturn(newTransaction.getId());
 
         mvc.perform(MockMvcRequestBuilders
-                .put("/users/accounts/transfer/{originAccountNumber}/{destinationAccountNumber}/{amount}", newTransaction.getAccount().getAccountNumber(), destinationAccount.getAccountNumber(),50.0)
+                .put("/users/accounts/transfer/{originAccountNumber}/{destinationAccountNumber}/{amount}", newTransaction.getAccount().getAccountNumber(), destinationAccount.getAccountNumber(), 50.0)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(newTransaction.getId()+""));
+                .andExpect(content().string(newTransaction.getId() + ""));
     }
+
     @Test
     //return result in xml format
     public void withdrawToUserXMLAccountTest() throws Exception {
@@ -238,14 +240,14 @@ public class TransactionControllerTest {
     @Test
     public void reportTest() throws Exception {
 
-       // List<Account> list = new ArrayList<>();
+        // List<Account> list = new ArrayList<>();
 //        Account account = new Account()
 //                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
 //                .withUserId("12")
 //                .withAccountNumber(78l)
 //                .withBalance(0l)
 //                .withAccountType(AccountType.Checking);
-        List<Transaction> transactionList=new ArrayList<>();
+        List<Transaction> transactionList = new ArrayList<>();
         Mockito.when(transactionService.report(Mockito.any(String.class), Mockito.any(LocalDate.class), Mockito.any(LocalDate.class)))
                 .thenReturn(transactionList);
 
@@ -265,7 +267,7 @@ public class TransactionControllerTest {
     @Test
     public void reportXmlTest() throws Exception {
 
-       // List<Account> list = new ArrayList<>();
+        // List<Account> list = new ArrayList<>();
 //        Account account = new Account()
 //                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
 //                .withUserId("12")
