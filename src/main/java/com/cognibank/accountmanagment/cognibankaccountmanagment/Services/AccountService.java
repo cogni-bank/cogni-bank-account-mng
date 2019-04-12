@@ -46,6 +46,4 @@ public class AccountService {
     public Account getAccountByAccountNumber(long accountNumber) {
         return accountRepository.findByAccountNumber(accountNumber);
     }
-
-
 }

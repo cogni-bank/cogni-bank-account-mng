@@ -2,8 +2,10 @@ package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
 
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBalanceException;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.OverDraftException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.AccountRepository;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.TransactionRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import static org.assertj.core.api.Assertions.*;
+
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -36,6 +39,9 @@ public class TransactionServiceTest {
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private TransactionRepository transactionRepository;
     @Before
     public void init() {
 
@@ -119,17 +125,83 @@ public class TransactionServiceTest {
         assertEquals("Account balance should be updated after the deposit.", 90.0,actualBalance, 0.1);
     }
 
+    @Test
+    @Transactional
+    public void transfertTest() throws Exception{
+        Account originAccount = new Account()
+                .withUserId("1")
+                .withAccountType(AccountType.Savings)
+                .withAccountNumber(3400000015l)
+                .withBalance(100.0);
+        originAccount = accountService.createAccount(originAccount);
+
+        Account destinationAccount = new Account()
+                .withUserId("1")
+                .withAccountType(AccountType.Savings)
+                .withAccountNumber(3400000030l)
+                .withBalance(100.0);
+        destinationAccount = accountService.createAccount(destinationAccount);
+
+        long transactionId = transactionService.transfer(originAccount.getAccountNumber(), destinationAccount.getAccountNumber(),50);
+
+        //test on the origine account number
+        double actualOrigineAccountBalance=accountRepository.findByAccountNumber(originAccount.getAccountNumber()).getBalance();
+        double expectedOrigineAccountBallance=50.0;
+        assertEquals("Account balance of the origin account should be updated after the transfer.", actualOrigineAccountBalance,expectedOrigineAccountBallance, 0.1);
+
+        //test on the destination account number
+        double actualDestinationAccountBalance=accountRepository.findByAccountNumber(destinationAccount.getAccountNumber()).getBalance();
+        double expectedDestinationAccountBallance=150.0;
+        assertEquals("Account balance of the origin account should be updated after the transfer.", actualDestinationAccountBalance,expectedDestinationAccountBallance, 0.1);
+
+        //test on the transaction record
+
+        List<Transaction> lastTransation =transactionRepository.findTransactionsIdByAccountIdAndDestinationAccountId(originAccount.getId(),destinationAccount.getId());
+        double actualAmountTransaction=lastTransation.get(lastTransation.size()-1).getAmount();
+        double expectedAmountTransaction=50.0;
+        assertEquals("Transaction amount should be update after the transfert.", actualAmountTransaction,expectedAmountTransaction, 0.1);
+
+
+    }
 
     @Test//(expected = LowBalanceException.class)
     @Transactional
-    public void withdrawTestForLowBalance() throws Exception{
-        Account account = new Account()
-                .withUserId("1")
-                .withAccountType(AccountType.Savings)
-                .withAccountNumber(10l)
-                .withBalance(100.0);
-        account = accountService.createAccount(account);
-        double actualBalance = transactionService.withdraw(80.0, account);
+    public void withdrawTestForLowBalance(){
+        try {
+            Account account = new Account()
+                    .withUserId("1")
+                    .withAccountType(AccountType.Savings)
+                    .withAccountNumber(10l)
+                    .withBalance(100.0);
+            account = accountService.createAccount(account);
+
+            double actualBalance = transactionService.withdraw(80.0, account);
+        }
+        catch (LowBalanceException e){
+            assertThat(e)
+                    .isInstanceOf(LowBalanceException.class)
+                    .hasMessage("Balance below $25. Notify the Customer");
+        }
+    }
+
+    @Test//(expected = LowBalanceException.class)
+    @Transactional
+    public void withdrawTestForOverDraft(){
+        try {
+            Account account = new Account()
+                    .withUserId("1")
+                    .withAccountType(AccountType.Savings)
+                    .withAccountNumber(10l)
+                    .withBalance(10.0);
+            account = accountService.createAccount(account);
+
+            double actualBalance = transactionService.withdraw(130.0, account);
+        }
+        catch (OverDraftException e){
+            assertThat(e)
+                    .isInstanceOf(OverDraftException.class)
+                    .hasMessage("Balance below - $100. Notify the Customer");
+        }
     }
 
     @Test

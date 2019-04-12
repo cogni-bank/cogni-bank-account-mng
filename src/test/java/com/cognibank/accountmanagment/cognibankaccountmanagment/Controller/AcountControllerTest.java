@@ -103,4 +103,36 @@ public class AcountControllerTest {
     }
 
 
+    @Test
+    public void getUserAccountsTest() throws Exception {
+        List<Account> list = new ArrayList<>();
+        Account checkingAccount = new Account()
+                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
+                .withAccountNumber(78l)
+                .withBalance(0l)
+                .withUserId("12")
+                .withAccountType(AccountType.Checking);
+
+        Account savingsAccount = new Account()
+                .withId("0e4c1211-2c58-4956-b523-ed0d64dc54c4")
+                .withAccountNumber(78l)
+                .withBalance(0l)
+                .withUserId("12")
+                .withAccountType(AccountType.Savings);
+        List<Account> accountList=new
+                ArrayList<>();
+        accountList.add(checkingAccount); accountList.add(savingsAccount);
+        Mockito.when(accountService.getUserAccounts(Mockito.any(String.class)))
+                .thenReturn(accountList);
+        String expected="[{\"id\":\"0e4c1211-2c58-4956-b523-ed0d64dc54c4\",\"accountNumber\":78,\"accountType\":\"Checking\",\"status\":\"ACTIVE\",\"balance\":0.0,\"userId\":\"12\"}," +
+                "{\"id\":\"0e4c1211-2c58-4956-b523-ed0d64dc54c4\",\"accountNumber\":78,\"accountType\":\"Savings\",\"status\":\"ACTIVE\",\"balance\":0.0,\"userId\":\"12\"}]";
+        mvc.perform(MockMvcRequestBuilders
+                .put("/users/accounts/accountsList/{userId}","12")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(expected));
+
+    }
 }

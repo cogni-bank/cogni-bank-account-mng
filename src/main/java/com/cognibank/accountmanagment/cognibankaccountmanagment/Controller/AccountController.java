@@ -11,6 +11,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Random;
 
 @RestController
@@ -49,9 +50,14 @@ public class AccountController {
         return Long.parseLong((accountService.numberOfAccount()+34000001)+""+((lastTwoDigits<10)?(0+""+lastTwoDigits):lastTwoDigits));
 
     }
+    //list of accounts related to a user
+    @PutMapping("/accountsList/{userId}")
+    public List<Account> getAccountsList(@PathVariable String userId) {
+        //will return the transaction id
+        return accountService.getUserAccounts(userId);
+    }
 
-
-    @PutMapping("update/{accountNumber}/{status}")
+    @PutMapping("/update/{accountNumber}/{status}")
 
     public String updateStatus( @PathVariable Long accountNumber, @PathVariable String status) {
 

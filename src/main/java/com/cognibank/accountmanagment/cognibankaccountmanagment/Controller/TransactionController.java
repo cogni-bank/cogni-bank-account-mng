@@ -45,15 +45,15 @@ public class TransactionController {
     //@PutMapping("report/{accountNumber}/{startDate}/{endDate}")
     @PutMapping(value = {"report/{accountId}/{startDate}/{endDate}"}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public String report(@PathVariable String accountId, @PathVariable String startDate, @PathVariable String endDate) {
-        //long accountNumber=getAccountNumberById(accountId);
-       // System.out.println(accountNumber +" inside report");
         List<Transaction> transactions=transactionService.report(accountId, LocalDate.parse(startDate), LocalDate.parse(endDate));
         return toStringForReport(transactions);
     }
-//    @PutMapping("report/{accountId}/{startDate}/{endDate}")
-//    public List<Transaction> report(@PathVariable long accountNumber, @PathVariable String startDate, @PathVariable String endDate) {
-//        return transactionService.report(accountNumber, LocalDate.parse(startDate), LocalDate.parse(endDate));
-//    }
+    @PutMapping("transfer/{originAccountNumber}/{destinationAccountNumber}/{amount}")
+    public long  transfer(@PathVariable long originAccountNumber, @PathVariable long destinationAccountNumber, @PathVariable double amount) {
+        //will return the transaction id
+        return transactionService.transfer(originAccountNumber,destinationAccountNumber,amount);
+    }
+
     //xml report
     @PutMapping(value={"reportXML/{accountId}/{startDate}/{endDate}"},
             produces = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})

@@ -23,4 +23,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, String
     List<Transaction> findTransactionsByAccountNumber(@Param("account_number") long accountNumber);
 
     Optional<List<Transaction>> findByAccountId(String accountId);
+
+    @Query(value = "SELECT * FROM transaction where account_id = :accountId AND destination_account= :destinationAccountId",nativeQuery = true)
+    List<Transaction> findTransactionsIdByAccountIdAndDestinationAccountId(@Param("accountId") String accountId, @Param("destinationAccountId") String destinationAccountId);
 }
