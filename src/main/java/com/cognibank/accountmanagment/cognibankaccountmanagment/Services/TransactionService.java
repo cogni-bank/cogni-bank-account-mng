@@ -2,9 +2,11 @@ package com.cognibank.accountmanagment.cognibankaccountmanagment.Services;
 
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.AccountNotActiveException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.LowBalanceException;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.UserIdWrongException;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Exceptions.UserManagementServiceUnavailabeException;
-import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.*;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Account;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.Transaction;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.TransactionStatus;
+import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.TransactionType;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.AccountRepository;
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Repository.TransactionRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -207,7 +209,7 @@ public class TransactionService {
         }
     }
 
-    //@Transactional
+    @Transactional
     public List<Transaction> report(String accountId, LocalDate startDate, LocalDate endDate) {
         // final Account account = accountService.getAccountByAccountNumber(accountNumber);
 
