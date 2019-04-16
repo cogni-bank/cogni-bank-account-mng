@@ -184,7 +184,7 @@ public class TransactionServiceTest {
         }
     }
 
-    @Test//(expected = LowBalanceException.class)
+    @Test//(expected = OverDraftException.class)
     @Transactional
     public void withdrawTestForOverDraft(){
         try {
