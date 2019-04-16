@@ -6,14 +6,10 @@ import com.cognibank.accountmanagment.cognibankaccountmanagment.Model.AccountsLi
 import com.cognibank.accountmanagment.cognibankaccountmanagment.Services.AccountService;
 import io.swagger.annotations.*;
 import org.json.JSONObject;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Random;
 @Api(tags = {"Accounts API"})
 @SwaggerDefinition(
