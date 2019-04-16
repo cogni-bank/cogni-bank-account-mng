@@ -284,7 +284,7 @@ public class TransactionControllerTest {
                 .accept(MediaType.APPLICATION_XML))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("<List/>"));
+                .andExpect(content().string("<List></List>"));
 
     }
 
